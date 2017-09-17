@@ -1,0 +1,9 @@
+[submodule "external/hdf5-feedstock"]
+	path = external/hdf5-feedstock
+    url = git@github.com:ericnchen/hdf5-feedstock.git
+[submodule "external/mpich-feedstock"]
+	path = external/mpich-feedstock
+	url = git@github.com:ericnchen/mpich-feedstock.git
+[submodule "external/fenics-feedstock"]
+	path = external/fenics-feedstock
+	url = git@github.com:ericnchen/fenics-feedstock.git

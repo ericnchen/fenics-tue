@@ -8,7 +8,7 @@ conda_build() {
               -c conda-forge
 }
 
-for each in mpich hdf5 fenics; do
+for each in mpich hdf5 petsc fenics; do
   if [ ! -e "${HOME}/._${each}" ]; then
     conda_build "${each}" && touch "${HOME}/._${each}"
   else

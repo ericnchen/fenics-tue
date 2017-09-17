@@ -7,3 +7,6 @@
 [submodule "external/fenics-feedstock"]
 	path = external/fenics-feedstock
 	url = git@github.com:ericnchen/fenics-feedstock.git
+[submodule "external/petsc-feedstock"]
+	path = external/petsc-feedstock
+	url = git@github.com:ericnchen/petsc-feedstock.git

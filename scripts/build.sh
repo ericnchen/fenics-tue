@@ -2,9 +2,11 @@
 #
 # Script to build all of the defined packages using conda-build.
 
+MY_INSTALL_DIR="${MY_INSTALL_DIR:-${HOME}/miniconda3}"
+
 conda_build() {
-  conda-build "${HOME}/shared/external/${1}-feedstock" \
-              -c "file:/${HOME}/miniconda3/conda-bld/" \
+  conda-build "$(pwd)/../external/${1}-feedstock" \
+              -c "file:/${MY_INSTALL_DIR}/conda-bld/" \
               -c conda-forge
 }
 

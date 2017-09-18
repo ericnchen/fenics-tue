@@ -10,11 +10,13 @@ conda install -c "file:/${HOME}/miniconda3/conda-bld/" -c conda-forge \
   libgcc==4.8.5 \
   matplotlib \
   mpi4py \
-  mshr
+  mshr \
   nose \
   pandas \
   pytest \
   scipy \
   seaborn \
   sphinx \
-  sphinx_rtd_theme
+  sphinx_rtd_theme \
+  sphinxcontrib \
+  sphinxcontrib-bibtex

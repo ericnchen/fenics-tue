@@ -2,7 +2,7 @@
 #
 # Script to install all of the defined packages using conda-build.
 
-MY_INSTALL_DIR="${HOME}/miniconda3"
+MY_INSTALL_DIR="${HOME}/fenics-tue"
 
 while [[ "${#}" -gt 0 ]]; do
   case "${1}" in

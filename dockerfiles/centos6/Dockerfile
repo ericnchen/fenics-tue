@@ -9,6 +9,7 @@ RUN chmod +x /opt/entrypoint.sh
 
 RUN yum install -y \
         gcc \
+        git \
         patch \
         wget && \
     yum clean all && \

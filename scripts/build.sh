@@ -2,7 +2,7 @@
 #
 # Script to build all of the defined packages using conda-build.
 
-MY_INSTALL_DIR="${MY_INSTALL_DIR:-${HOME}/miniconda3}"
+MY_INSTALL_DIR="${MY_INSTALL_DIR:-${HOME}/fenics-tue}"
 
 conda_build() {
   conda-build "$(pwd)/../external/${1}-feedstock" \

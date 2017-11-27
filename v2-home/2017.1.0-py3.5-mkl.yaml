@@ -1,0 +1,14 @@
+name: 2017.1.0-py3.5-mkl
+
+channels:
+  - intel
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.5.*
+  - intelpython3_core
+
+  # maybe i don't even need to add these or the above ...
+  - gcc=4.8.*
+  - mpich

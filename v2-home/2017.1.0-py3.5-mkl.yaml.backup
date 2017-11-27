@@ -1,0 +1,9 @@
+name: 2017.1.0-py3.5-mkl
+
+channels:
+  - intel
+  - defaults
+
+dependencies:
+  - python=3.5.*
+  - intelpython3_core

@@ -1,0 +1,9 @@
+#%Module -*- tcl -*-
+
+setenv CONDA_DEFAULT_ENV intel
+setenv CONDA_PREFIX /home/echen/.local/opt/miniconda3/envs/intel
+
+prepend-path LD_LIBRARY_PATH /home/echen/.local/opt/miniconda3/envs/intel/lib
+
+prepend-path PATH /home/echen/.local/opt/miniconda3/envs/intel/bin
+prepend-path PKG_CONFIG_PATH /home/echen/.local/opt/miniconda3/envs/intel/lib/pkgconfig

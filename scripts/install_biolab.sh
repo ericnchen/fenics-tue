@@ -32,16 +32,6 @@ while [[ "${#}" -gt 0 ]]; do
   esac
 done
 
-install_miniconda() {
-  wget -O /tmp/miniconda.sh "https://repo.continuum.io/miniconda/Miniconda3-4.3.21-Linux-x86_64.sh" && \
-    sh /tmp/miniconda.sh -b -p "${MY_INSTALL_DIR}" && \
-    "${MY_INSTALL_DIR}/bin/conda" install -c conda-forge -y \
-      gcc==4.8.5 \
-      libgcc==4.8.5 \
-      conda-build=3.0 && \
-    rm /tmp/miniconda.sh
-}
-
 export MY_INSTALL_DIR && \
   install_miniconda && \
   export PATH="${MY_INSTALL_DIR}/bin:${PATH}" && \

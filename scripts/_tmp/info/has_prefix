@@ -1,0 +1,9 @@
+/localdisk/tc/agent2/work/11562aa05e25f578/conda-build/hdf5_1502849833390/_b_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac binary lib/libhdf5.10.dylib
+/localdisk/tc/agent2/work/11562aa05e25f578/conda-build/hdf5_1502849833390/_b_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac binary lib/libhdf5.dylib
+/opt/anaconda1anaconda2anaconda3 text bin/h5c++
+/opt/anaconda1anaconda2anaconda3 text bin/h5cc
+/opt/anaconda1anaconda2anaconda3 text lib/libhdf5.la
+/opt/anaconda1anaconda2anaconda3 text lib/libhdf5.settings
+/opt/anaconda1anaconda2anaconda3 text lib/libhdf5_cpp.la
+/opt/anaconda1anaconda2anaconda3 text lib/libhdf5_hl.la
+/opt/anaconda1anaconda2anaconda3 text lib/libhdf5_hl_cpp.la

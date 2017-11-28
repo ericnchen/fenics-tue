@@ -16,6 +16,7 @@ requirements:
   run:
     - python
     - six
+    - numpy
 
 test:
   imports:
@@ -25,3 +26,7 @@ test:
     - ufl.core
     - ufl.corealg
     - ufl.algorithms
+
+  commands:
+    - ufl-version
+    - ufl2py --help

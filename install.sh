@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# WIP
+# TODO WIP
 
 # TODO Generate config info from script. Hardcoded for now to test install.
 FENICS_TARGET="2017.1.0"

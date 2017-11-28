@@ -113,6 +113,14 @@ build_fenics() {
   "${PREFIX_TARGET}/conda/bin/conda" build purge
 }
 
+build_instant() {
+  # Build (convert) instant into a conda package.
+
+  echo "Converting instant into a conda package ..."
+  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/instant
+  "${PREFIX_TARGET}/conda/bin/conda" build purge
+}
+
 build_ufl() {
   # Build (convert) UFL into a conda package.
 

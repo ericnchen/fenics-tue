@@ -61,6 +61,9 @@ install_conda_base() {
     echo "Installing Miniconda to ${PREFIX_TARGET}/conda ..."
     bash "/tmp/miniconda${RNG}.sh" -b -p "${PREFIX_TARGET}/conda" > /dev/null 2>&1
     rm   "/tmp/miniconda${RNG}.sh"
+
+    "${PREFIX_TARGET}/conda/bin/conda" install -y conda-build
+    #> /dev/null 2>&1
   fi
 }
 

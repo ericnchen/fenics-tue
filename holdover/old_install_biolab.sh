@@ -31,29 +31,3 @@ while [[ "${#}" -gt 0 ]]; do
       ;;
   esac
 done
-
-export MY_INSTALL_DIR && \
-  install_miniconda && \
-  export PATH="${MY_INSTALL_DIR}/bin:${PATH}" && \
-  sh build.sh && \
-  conda install -c "file:/${MY_INSTALL_DIR}/conda-bld/" -c conda-forge -y \
-    fenics=2017.1 \
-    gcc==4.8.5 \
-    h5py \
-    ipython \
-    libgcc==4.8.5 \
-    matplotlib \
-    mpi4py \
-    mshr=2017.1 \
-    nose \
-    pandas \
-    pytest \
-    scipy \
-    seaborn \
-    sphinx \
-    sphinx_rtd_theme \
-    sphinxcontrib \
-    sphinxcontrib-bibtex && \
-  rm "${HOME}/._mpich" "${HOME}/._hdf5" "${HOME}/._petsc" "${HOME}/._fenics" && \
-  conda build purge && \
-  echo "Done!"

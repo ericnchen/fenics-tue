@@ -133,48 +133,6 @@ install_swig () {
     rm -rf /tmp/swig-3.0.5
 }
 
-install_fenics_python () {
-    pip install --no-cache-dir --no-index "${WORKDIR}/external_downloads/fiat-2017.1.0.tar.bz2"
-    pip install --no-cache-dir --no-index "${WORKDIR}/external_downloads/ufl-2017.1.0.tar.bz2"
-    pip install --no-cache-dir --no-index "${WORKDIR}/external_downloads/dijitso-2017.1.0.tar.bz2"
-    pip install --no-cache-dir --no-index "${WORKDIR}/external_downloads/ffc-2017.1.0.tar.bz2"
-    pip install --no-cache-dir --no-index "${WORKDIR}/external_downloads/instant-2017.1.0.tar.bz2"
-}
-
-install_dolfin () {
-    tar -C /tmp -xzf "${WORKDIR}/external_downloads/dolfin-2017.1.0.tar.gz"
-    mkdir /tmp/dolfin-2017.1.0/build
-    cd /tmp/dolfin-2017.1.0/build
-    export LD_LIBRARY_PATH="${CONDA_PREFIX}/lib:${LD_LIBRARY_PATH}"
-    export PETSC_DIR="${INSTALLDIR}/petsc"
-    export PKG_CONFIG_PATH="${PETSC_DIR}/lib/pkgconfig:${PKG_CONFIG_PATH}"
-    cmake .. \
-        -DBOOST_ROOT="${INSTALLDIR}/boost" \
-        -DCMAKE_C_COMPILER=mpicc \
-        -DCMAKE_CXX_COMPILER=mpicxx \
-        -DCMAKE_INSTALL_PREFIX="${INSTALLDIR}/dolfin" \
-        -DDOLFIN_ENABLE_CHOLMOD=0 \
-        -DDOLFIN_ENABLE_DOCS=0 \
-        -DDOLFIN_ENABLE_GTEST=0 \
-        -DDOLFIN_ENABLE_PARMETIS=0 \
-        -DDOLFIN_ENABLE_PETSC4PY=0 \
-        -DDOLFIN_ENABLE_SLEPC=0 \
-        -DDOLFIN_ENABLE_SLEPC4PY=0 \
-        -DDOLFIN_ENABLE_SPHINX=0 \
-        -DDOLFIN_ENABLE_TRILINOS=0 \
-        -DDOLFIN_ENABLE_UMFPACK=0 \
-        -DDOLFIN_ENABLE_VTK=0 \
-        -DDOLFIN_SKIP_BUILD_TESTS=1 \
-        -DEIGEN3_INCLUDE_DIR="${INSTALLDIR}/eigen/include" \
-        -DHDF5_ROOT="${INSTALLDIR}/hdf5" \
-        -DSCOTCH_DIR="${INSTALLDIR}/scotch" \
-        -DSWIG_EXECUTABLE="${INSTALLDIR}/swig/bin/swig" \
-        -DZLIB_ROOT="${CONDA_PREFIX}"
-    make -j 4 all
-    make install
-    rm -rf /tmp/dolfin-2017.1.0
-}
-
 install_mshr () {
     mkdir /tmp/mshr
     tar -C /tmp/mshr -xjf "${WORKDIR}/external_downloads/mshr-2017.1.0.tar.bz2"

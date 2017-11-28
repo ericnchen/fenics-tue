@@ -105,14 +105,6 @@ build_hdf5() {
   "${PREFIX_TARGET}/conda/bin/conda" build purge
 }
 
-build_fenics() {
-  # Build DOLFIN with a parallel supported HDF5 library.
-
-  echo "Building DOLFIN with a parallel supported HDF5 library ..."
-  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/fenics-hdf5-parallel
-  "${PREFIX_TARGET}/conda/bin/conda" build purge
-}
-
 build_instant() {
   # Build (convert) instant into a conda package.
 
@@ -156,4 +148,22 @@ build_ffc() {
   echo "Converting FFC into a conda package ..."
   "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/ffc
   "${PREFIX_TARGET}/conda/bin/conda" build purge
+}
+
+build_fenics() {
+  # Build DOLFIN with a parallel supported HDF5 library.
+  #
+  # Requires
+  #   FFC
+  #   UFL
+
+  echo "Building DOLFIN with a parallel supported HDF5 library ..."
+  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/fenics
+  "${PREFIX_TARGET}/conda/bin/conda" build purge
+}
+
+build_dolfin() {
+  # Alias to build_fenics().
+
+  build_fenics
 }

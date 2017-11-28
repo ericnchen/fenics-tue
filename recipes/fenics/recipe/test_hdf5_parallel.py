@@ -2,7 +2,7 @@
 """
 This script tests that HDF5 was compiled to work in parallel.
 
-    mpirun -np 2 python tests/test_hdf5_parallel.py
+    mpirun -np 2 python test_hdf5_parallel.py
 """
 
 

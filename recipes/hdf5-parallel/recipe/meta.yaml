@@ -1,7 +1,6 @@
 {% set version = "1.8.18" %}
 {% set maj_min_ver = ".".join(version.split(".")[:2]) %}
 
-
 package:
   name: hdf5-parallel
   version: {{ version }}
@@ -10,10 +9,7 @@ source:
   url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-{{ maj_min_ver }}/hdf5-{{ version }}/src/hdf5-{{ version }}.tar.gz
   sha256: cdb195ad8d9e6782acf24b2488061289f615628c2ccda8457b0a0c3fb7a8a063
   patches:
-    # Skip the longer than CI time `cache` test.
     - test_Makefile.in.patch
-    # Disable shared Fortran API building on OSX
-    - osx_configure.patch  # [osx]
 
 build:
   number: 0
@@ -21,7 +17,6 @@ build:
 
 requirements:
   build:
-#    - python
     - toolchain
     - libtool
     - cmake >=3.1
@@ -47,4 +42,3 @@ extra:
     - astrofrog
     - marqh
     - echen
-

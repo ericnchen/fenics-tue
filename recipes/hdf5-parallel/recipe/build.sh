@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if [ "$(uname)" == "Darwin" ]; then
-    export CXX="${CXX} -stdlib=libc++"
-    export LDFLAGS="${LDFLAGS} -Wl,-rpath,$PREFIX/lib"
-fi
-
 export LIBRARY_PATH="${PREFIX}/lib"
 
 ./configure --prefix="${PREFIX}" \
@@ -28,7 +23,6 @@ export LIBRARY_PATH="${PREFIX}/lib"
             CFLAGS="-fPIC" CXXFLAGS="-fPIC"
 
 make -j 4
-#make check
 make install -j 4
 
 rm -rf $PREFIX/share/hdf5_examples

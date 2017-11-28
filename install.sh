@@ -96,3 +96,11 @@ install() {
 
 
 #install
+
+build_hdf5_parallel() {
+  # Build a parallel version of HDF5.
+
+  echo "Building hdf5-parallel ..."
+  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/hdf5-parallel
+  "${PREFIX_TARGET}/conda/bin/conda" build purge
+}

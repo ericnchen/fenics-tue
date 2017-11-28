@@ -129,11 +129,21 @@ build_dijitso() {
   "${PREFIX_TARGET}/conda/bin/conda" build purge
 }
 
+build_fiat() {
+  # Build (convert) FIAT into a conda package.
+
+  echo "Converting FIAT into a conda package ..."
+  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/fiat
+  "${PREFIX_TARGET}/conda/bin/conda" build purge
+}
+
 build_ffc() {
   # Build (convert) FFC into a conda package.
   #
   # Requires
   #   dijitso
+  #   UFL
+  #   FIAT
 
   echo "Converting FFC into a conda package ..."
   "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/ffc

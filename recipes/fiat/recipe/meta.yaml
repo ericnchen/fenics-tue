@@ -1,0 +1,25 @@
+package:
+  name: fiat
+  version: '2017.1.0'
+
+source:
+  fn: fiat-2017.1.0.tar.gz
+  url: https://bitbucket.org/fenics-project/fiat/downloads/fiat-2017.1.0.tar.gz
+  sha256: d4288401ad16c4598720f9db0810a522f7f0eadad35d8211bac7120bce5fde94
+
+requirements:
+  build:
+    - python
+    - six
+    - sympy
+    - numpy
+
+  run:
+    - python
+    - numpy
+    - six
+    - sympy
+
+test:
+  imports:
+    - FIAT

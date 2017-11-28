@@ -80,7 +80,7 @@ install_conda_environment() {
 
   check_directory "${PREFIX_TARGET}/conda/envs/${TARGET}"
   if [ "${?}" == "1" ]; then
-    echo "Installing conda environment ${TARGET} ... "
+    echo "Installing conda environment ${TARGET} ..."
     "${PREFIX_TARGET}/conda/bin/conda" env create -f "${TARGET}.yaml"
     #> /dev/null 2>&1
   fi
@@ -97,10 +97,26 @@ install() {
 
 #install
 
-build_hdf5_parallel() {
-  # Build a parallel version of HDF5.
+build_hdf5() {
+  # Build the HDF5 library with parallel support.
 
-  echo "Building hdf5-parallel ..."
+  echo "Building the HDF5 library with parallel support ..."
   "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/hdf5-parallel
+  "${PREFIX_TARGET}/conda/bin/conda" build purge
+}
+
+build_fenics() {
+  # Build DOLFIN with a parallel supported HDF5 library.
+
+  echo "Building DOLFIN with a parallel supported HDF5 library ..."
+  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/fenics-hdf5-parallel
+  "${PREFIX_TARGET}/conda/bin/conda" build purge
+}
+
+build_ufl() {
+  # Build (convert) UFL into a conda package.
+
+  echo "Converting UFL into a conda package ..."
+  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/ufl
   "${PREFIX_TARGET}/conda/bin/conda" build purge
 }

@@ -1,0 +1,50 @@
+{% set version = "1.8.18" %}
+{% set maj_min_ver = ".".join(version.split(".")[:2]) %}
+
+
+package:
+  name: hdf5-parallel
+  version: {{ version }}
+
+source:
+  url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-{{ maj_min_ver }}/hdf5-{{ version }}/src/hdf5-{{ version }}.tar.gz
+  sha256: cdb195ad8d9e6782acf24b2488061289f615628c2ccda8457b0a0c3fb7a8a063
+  patches:
+    # Skip the longer than CI time `cache` test.
+    - test_Makefile.in.patch
+    # Disable shared Fortran API building on OSX
+    - osx_configure.patch  # [osx]
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: True
+
+requirements:
+  build:
+#    - python
+    - toolchain
+    - libtool
+    - cmake >=3.1
+    - zlib 1.2.11
+    - gcc
+    - mpich
+  run:
+    - zlib 1.2.11
+
+about:
+  home: http://www.hdfgroup.org/HDF5/
+  license: HDF5
+  license_family: BSD
+  license_file: COPYING
+  summary: 'HDF5 is a data model, library, and file format for storing and managing data.'
+
+extra:
+  recipe-maintainers:
+    - jakirkham
+    - gillins
+    - groutr
+    - ocefpaf
+    - astrofrog
+    - marqh
+    - echen
+

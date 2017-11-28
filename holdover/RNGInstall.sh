@@ -34,31 +34,6 @@ install_boost () {
     rm -rf /tmp/boost_1_56_0
 }
 
-install_hdf5 () {
-    tar -C /tmp -xjf "${WORKDIR}/external_downloads/hdf5-1.8.19.tar.bz2"
-    cd /tmp/hdf5-1.8.19
-    ./configure \
-        CC=mpicc CXX=mpicxx \
-        CFLAGS="-O3 -fPIC" CXXFLAGS="-O3 -fPIC" \
-        --disable-debug \
-        --disable-fortran \
-        --disable-hl \
-        --disable-static \
-        --enable-cxx \
-        --enable-linux-lfs \
-        --enable-parallel \
-        --enable-production \
-        --enable-shared \
-        --enable-threadsafe \
-        --enable-unsupported \
-        --prefix="${INSTALLDIR}/hdf5" \
-        --with-pthread \
-        --with-zlib="${CONDA_PREFIX}/lib"
-    make -j 4
-    make install
-    rm -rf /tmp/hdf5-1.8.19
-}
-
 install_hypre () {
     tar -C /tmp -xzf "${WORKDIR}/external_downloads/hypre-2.11.2.tar.gz"
     cd /tmp/hypre-2.11.2/src
@@ -226,15 +201,3 @@ install_mshr () {
     make install
     rm -rf /tmp/mshr
 }
-
-#install_boost
-#install_hdf5
-#install_hypre
-#install_scotch
-#install_mumps
-#install_petsc
-#install_eigen
-#install_swig
-#install_fenics_python
-#install_dolfin
-#install_mshr

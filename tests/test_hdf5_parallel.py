@@ -2,11 +2,11 @@
 """
 This script tests that HDF5 was compiled to work in parallel.
 
-    mpirun -np 2 python tests/test_parallel_hdf5.py
+    mpirun -np 2 python tests/test_hdf5_parallel.py
 """
 
 
-def test_parallel_hdf5():
+def test_hdf5_parallel():
     from random import randint
     suffix = ''.join((str(randint(1, 1000)), str(randint(1, 1000))))
     filename = '/tmp/mesh{}.hdf5'.format(suffix)
@@ -25,4 +25,4 @@ def test_parallel_hdf5():
 
 
 if __name__ == '__main__':
-    test_parallel_hdf5()
+    test_hdf5_parallel()

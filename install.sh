@@ -58,12 +58,12 @@ install_conda_base() {
     echo "Downloading Miniconda ..."
     wget -q -O "/tmp/miniconda${RNG}.sh" "${URL}"
 
-    echo "Installing Miniconda to ${PREFIX_TARGET}/conda ..."
+    echo "Installing conda to ${PREFIX_TARGET}/conda ..."
     bash "/tmp/miniconda${RNG}.sh" -b -p "${PREFIX_TARGET}/conda" > /dev/null 2>&1
     rm   "/tmp/miniconda${RNG}.sh"
 
-    "${PREFIX_TARGET}/conda/bin/conda" install -y conda-build
-    #> /dev/null 2>&1
+    echo "Installing the conda-build tool ..."
+    "${PREFIX_TARGET}/conda/bin/conda" install -y conda-build > /dev/null 2>&1
   fi
 }
 
@@ -91,8 +91,8 @@ install() {
   # Installs the conda base system and then the appropriate FEniCS version(s).
 
   install_conda_base
-  install_conda_environment
+#  install_conda_environment
 }
 
 
-install
+#install

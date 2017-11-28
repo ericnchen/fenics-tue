@@ -120,3 +120,22 @@ build_ufl() {
   "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/ufl
   "${PREFIX_TARGET}/conda/bin/conda" build purge
 }
+
+build_dijitso() {
+  # Build (convert) dijitso into a conda package.
+
+  echo "Converting dijitso into a conda package ..."
+  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/dijitso
+  "${PREFIX_TARGET}/conda/bin/conda" build purge
+}
+
+build_ffc() {
+  # Build (convert) FFC into a conda package.
+  #
+  # Requires
+  #   dijitso
+
+  echo "Converting FFC into a conda package ..."
+  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/ffc
+  "${PREFIX_TARGET}/conda/bin/conda" build purge
+}

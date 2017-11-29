@@ -5,7 +5,6 @@
 # TODO Generate config info from script. Hardcoded for now to test install.
 FENICS_TARGET="2017.1.0"
 PYTHON_TARGET="3.5"
-LINALG_TARGET="mkl"
 FOLDER_TARGET="testing-fenics-tue"
 PREFIX_TARGET="${HOME}/${FOLDER_TARGET}"
 
@@ -68,96 +67,27 @@ install_conda_base() {
 }
 
 
-install_conda_environment() {
-  # Installs the conda environment.
-
-  local TARGET="${FENICS_TARGET}-py${PYTHON_TARGET}-${LINALG_TARGET}"
-
-  check_internet
-  if [ "${?}" != "0" ]; then
-    export https_proxy="https://${PROXY_SERVER}:443"
-  fi
-
-  check_directory "${PREFIX_TARGET}/conda/envs/${TARGET}"
-  if [ "${?}" == "1" ]; then
-    echo "Installing conda environment ${TARGET} ..."
-    "${PREFIX_TARGET}/conda/bin/conda" env create -f "${TARGET}.yaml"
-    #> /dev/null 2>&1
-  fi
-}
-
-
 install() {
   # Installs the conda base system and then the appropriate FEniCS version(s).
+  # TODO Revisit this.
 
   install_conda_base
-#  install_conda_environment
 }
 
 
-#install
-
-build_hdf5() {
-  # Build the HDF5 library with parallel support.
-
-  echo "Building the HDF5 library with parallel support ..."
-  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/hdf5-parallel
-  "${PREFIX_TARGET}/conda/bin/conda" build purge
-}
-
-build_instant() {
-  # Build (convert) instant into a conda package.
-
-  echo "Converting instant into a conda package ..."
-  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/instant
-  "${PREFIX_TARGET}/conda/bin/conda" build purge
-}
-
-build_ufl() {
-  # Build (convert) UFL into a conda package.
-
-  echo "Converting UFL into a conda package ..."
-  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/ufl
-  "${PREFIX_TARGET}/conda/bin/conda" build purge
-}
-
-build_dijitso() {
-  # Build (convert) dijitso into a conda package.
-
-  echo "Converting dijitso into a conda package ..."
-  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/dijitso
-  "${PREFIX_TARGET}/conda/bin/conda" build purge
-}
-
-build_fiat() {
-  # Build (convert) FIAT into a conda package.
-
-  echo "Converting FIAT into a conda package ..."
-  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/fiat
-  "${PREFIX_TARGET}/conda/bin/conda" build purge
-}
-
-build_ffc() {
-  # Build (convert) FFC into a conda package.
+build() {
+  # Build a conda package defined in recipes.
   #
-  # Requires
-  #   dijitso
-  #   UFL
-  #   FIAT
+  # Usage
+  #   build name_of_package
 
-  echo "Converting FFC into a conda package ..."
-  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/ffc
-  "${PREFIX_TARGET}/conda/bin/conda" build purge
-}
+  check_directory "recipes/${1}"
+  if [ "${?}" == "1" ]; then
+    echo "ERROR: Recipe for ${1} was not found."
+    return 1
+  fi
 
-build_dolfin() {
-  # Build DOLFIN with a parallel supported HDF5 library.
-  #
-  # Requires
-  #   FFC
-  #   UFL
-
-  echo "Building DOLFIN with a parallel supported HDF5 library ..."
-  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/dolfin
+  echo "Building ${1} ..."
+  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" "recipes/${1}"
   "${PREFIX_TARGET}/conda/bin/conda" build purge
 }

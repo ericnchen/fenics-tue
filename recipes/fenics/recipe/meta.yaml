@@ -1,0 +1,8 @@
+package:
+  name: fenics
+  version: '2017.1.0'
+
+requirements:
+  run:
+    - python
+    - dolfin 2017.1.*

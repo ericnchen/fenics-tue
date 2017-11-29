@@ -7,3 +7,10 @@ prepend-path LD_LIBRARY_PATH /home/echen/.local/opt/miniconda3/envs/intel/lib
 
 prepend-path PATH /home/echen/.local/opt/miniconda3/envs/intel/bin
 prepend-path PKG_CONFIG_PATH /home/echen/.local/opt/miniconda3/envs/intel/lib/pkgconfig
+
+# conflict rocks-openmpi
+# prereq python/mkl
+# prepend-path PYTHONPATH /home/echen/.local/opt/fenics-mkl-2017.1.0/dolfin/lib/python3.5/site-packages
+# setenv CC mpicc
+# setenv CXX mpicxx
+# setenv FC mpifort

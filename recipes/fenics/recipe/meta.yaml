@@ -3,6 +3,9 @@ package:
   version: '2017.1.0'
 
 requirements:
+  build:
+    - python {{ python }}
+
   run:
     - python
     - dolfin 2017.1.*

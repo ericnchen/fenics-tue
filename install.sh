@@ -79,7 +79,11 @@ build() {
   # Build a conda package defined in recipes.
   #
   # Usage
-  #   build name_of_package
+  #   build name_of_package python_version_number
+  #     [0]             [1]                   [2]
+  #
+  # Example
+  #   build fenics 3.5
 
   check_directory "recipes/${1}"
   if [ "${?}" == "1" ]; then
@@ -87,7 +91,15 @@ build() {
     return 1
   fi
 
-  echo "Building ${1} ..."
-  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" "recipes/${1}"
+  echo "Building ${1} for Python ${2} ..."
+  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${2}" "recipes/${1}"
   "${PREFIX_TARGET}/conda/bin/conda" build purge
+}
+
+
+build_all() {
+  # Build all "distributions" of FEniCS.
+
+  build fenics 3.5
+  build fenics 2.7
 }

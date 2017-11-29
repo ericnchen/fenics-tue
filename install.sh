@@ -150,7 +150,7 @@ build_ffc() {
   "${PREFIX_TARGET}/conda/bin/conda" build purge
 }
 
-build_fenics() {
+build_dolfin() {
   # Build DOLFIN with a parallel supported HDF5 library.
   #
   # Requires
@@ -158,12 +158,6 @@ build_fenics() {
   #   UFL
 
   echo "Building DOLFIN with a parallel supported HDF5 library ..."
-  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/fenics
+  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${PYTHON_TARGET}" recipes/dolfin
   "${PREFIX_TARGET}/conda/bin/conda" build purge
-}
-
-build_dolfin() {
-  # Alias to build_fenics().
-
-  build_fenics
 }

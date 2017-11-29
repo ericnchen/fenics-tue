@@ -3,7 +3,7 @@
 {% set swig_version = '3.0.12' %}
 
 package:
-  name: fenics
+  name: dolfin
   version: {{version}}
 
 source:

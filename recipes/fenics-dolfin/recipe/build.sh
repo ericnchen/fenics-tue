@@ -4,7 +4,7 @@
 
 # Tarball includes cached swig output built with Python 3.
 # Re-generate it with correct Python.
-#$PYTHON cmake/scripts/generate-swig-interface.py
+$PYTHON cmake/scripts/generate-swig-interface.py
 
 rm -rf build
 mkdir build
@@ -36,10 +36,6 @@ cmake .. \
   -DCMAKE_INCLUDE_PATH=$INCLUDE_PATH \
   -DCMAKE_LIBRARY_PATH=$LIBRARY_PATH \
   -DPYTHON_EXECUTABLE=$PYTHON || (cat CMakeFiles/CMakeError.log && exit 1)
-
-#  -DDOLFIN_SKIP_BUILD_TESTS=1 \
-#  -DCMAKE_C_COMPILER="${PREFIX}/bin/mpicc" \
-#  -DCMAKE_CXX_COMPILER="${PREFIX}/bin/mpicxx" \
 
 make VERBOSE=1 -j 4
 make install

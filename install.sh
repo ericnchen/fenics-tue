@@ -57,11 +57,10 @@ install_conda_base() {
     echo "Downloading Miniconda ..."
     wget -q -O "/tmp/miniconda${RNG}.sh" "${URL}"
 
-    echo "Installing conda to ${PREFIX_TARGET}/conda ..."
+    echo "Installing Miniconda to ${PREFIX_TARGET}/conda ..."
     bash "/tmp/miniconda${RNG}.sh" -b -p "${PREFIX_TARGET}/conda" > /dev/null 2>&1
     rm   "/tmp/miniconda${RNG}.sh"
 
-    echo "Installing the conda-build tool ..."
     "${PREFIX_TARGET}/conda/bin/conda" install -y conda-build > /dev/null 2>&1
   fi
 }
@@ -83,6 +82,7 @@ build() {
   #     [0]             [1]                   [2]
   #
   # Example
+  #   build fenics 2.7
   #   build fenics 3.5
 
   check_directory "recipes/${1}"
@@ -92,7 +92,11 @@ build() {
   fi
 
   echo "Building ${1} for Python ${2} ..."
-  "${PREFIX_TARGET}/conda/bin/conda" build -c conda-forge --python "${2}" "recipes/${1}"
+
+  "${PREFIX_TARGET}/conda/bin/conda" build "recipes/${1}"        \
+                                           --python "${2}"       \
+                                           --channel conda-forge
+
   "${PREFIX_TARGET}/conda/bin/conda" build purge
 }
 

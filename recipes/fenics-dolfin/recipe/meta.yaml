@@ -1,14 +1,21 @@
-{% set version = "2017.1.0" %}
+{% set build_number = '0' %}
+
+{% set python_string = ''.join(['py'] + python.split('.')[:2]) %}
+
 {% set petsc_version = '3.7.*' %}
 {% set swig_version = '3.0.12' %}
 
 package:
-  name: dolfin
-  version: {{version}}
+  name: fenics-dolfin
+  version: 2017.1.0
 
 source:
-  url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-{{version}}.tar.gz
+  url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-2017.1.0.tar.gz
   sha256: ba793a2d41995d65ce4ee9e955e06342a6357174420b727cfde9fc6c70590e92
+
+build:
+  number: {{ build_number }}
+  string: {{ python_string }}_{{ build_number }}
 
 requirements:
   build:
@@ -24,45 +31,42 @@ requirements:
     - toolchain
     - zlib 1.2.*
     - mpich
-    - petsc {{petsc_version}}
-    - petsc4py {{petsc_version}}
-    - slepc {{petsc_version}}
-    - slepc4py {{petsc_version}}
-    - swig {{swig_version}}
+    - petsc    {{ petsc_version }}
+    - petsc4py {{ petsc_version }}
+    - slepc    {{ petsc_version }}
+    - slepc4py {{ petsc_version }}
+    - swig 3.0.*
     - numpy 1.13.*
     - ply
     - six
     - subprocess32  # [py2k]
     - sympy
-    - hdf5-parallel 1.8.18
-    - ffc {{version}}
-    - ufl {{version}}
+    - hdf5-parallel 1.8.*
+    - fenics-python-packages 2017.1.*
 
   run:
-    - python
+    - python {{ python }}
     - setuptools
     - boost 1.64.*
     - cmake
     - eigen
     - gcc
     - mpich
-    - petsc {{petsc_version}}
-    - petsc4py {{petsc_version}}
-    - slepc {{petsc_version}}
-    - slepc4py {{petsc_version}}
+    - petsc    {{ petsc_version }}
+    - petsc4py {{ petsc_version }}
+    - slepc    {{ petsc_version }}
+    - slepc4py {{ petsc_version }}
     - pkg-config
     - ptscotch
     - zlib 1.2.*
     - ply
-    - swig {{swig_version}}
+    - swig 3.0.*
     - numpy 1.13.*
     - six
     - subprocess32  # [py2k]
     - sympy
-    - hdf5-parallel 1.8.18
-    - ufl {{version}}
-    - ffc {{version}}
-    - instant {{version}}
+    - hdf5-parallel 1.8.*
+    - fenics-python-packages 2017.1.*
 
 test:
   files:

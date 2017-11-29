@@ -1,3 +1,5 @@
+{% set build_number = '0' %}
+
 {% set version = "1.8.18" %}
 {% set maj_min_ver = ".".join(version.split(".")[:2]) %}
 
@@ -12,7 +14,8 @@ source:
     - test_Makefile.in.patch
 
 build:
-  number: 0
+  number: {{ build_number }}
+  string: {{ build_number }}
   detect_binary_files_with_prefix: True
 
 requirements:

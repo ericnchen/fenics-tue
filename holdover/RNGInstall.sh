@@ -132,30 +132,3 @@ install_swig () {
     make install
     rm -rf /tmp/swig-3.0.5
 }
-
-install_mshr () {
-    mkdir /tmp/mshr
-    tar -C /tmp/mshr -xjf "${WORKDIR}/external_downloads/mshr-2017.1.0.tar.bz2"
-    cd /tmp/mshr/fenics-project-mshr-*
-    mkdir build
-    cd build
-    source "${INSTALLDIR}/dolfin/share/dolfin/dolfin.conf"
-    export LD_LIBRARY_PATH="${CONDA_PREFIX}/lib:${LD_LIBRARY_PATH}"
-    export PETSC_DIR="${INSTALLDIR}/petsc"
-    export PKG_CONFIG_PATH="${PETSC_DIR}/lib/pkgconfig:${PKG_CONFIG_PATH}"
-    cmake .. \
-        -DBOOST_ROOT="${INSTALLDIR}/boost" \
-        -DCMAKE_BUILD_TYPE="Release" \
-        -DCMAKE_C_COMPILER=mpicc \
-        -DCMAKE_CXX_COMPILER=mpicxx \
-        -DCMAKE_INSTALL_PREFIX="${INSTALLDIR}/mshr" \
-        -DGMP_INCLUDE_DIR="${CONDA_PREFIX}/include" \
-        -DGMP_LIBRARIES="${CONDA_PREFIX}/lib/libgmp.so" \
-        -DMPFR_INCLUDE_DIR="${CONDA_PREFIX}/include" \
-        -DMPFR_LIBRARIES="${CONDA_PREFIX}/lib/libmpfr.so" \
-        -DMSHR_ENABLE_VTK=0 \
-        -DSWIG_EXECUTABLE="${INSTALLDIR}/swig/bin/swig"
-    make -j 4
-    make install
-    rm -rf /tmp/mshr
-}

@@ -1,21 +1,14 @@
-{% set build_number = '0' %}
-
-{% set python_string = ''.join(['py'] + python.split('.')[:2]) %}
-
-{% set petsc_version = '3.7.*' %}
-{% set swig_version = '3.0.12' %}
-
 package:
-  name: fenics-dolfin
-  version: 2017.1.0
+  name: dolfin
+  version: "2017.1.0"
 
 source:
   url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-2017.1.0.tar.gz
   sha256: ba793a2d41995d65ce4ee9e955e06342a6357174420b727cfde9fc6c70590e92
 
 build:
-  number: {{ build_number }}
-  string: {{ python_string }}_{{ build_number }}
+  number: 0
+  string: py{{ CONDA_PY }}_tue_{{ PKG_BUILDNUM }}
 
 requirements:
   build:
@@ -31,18 +24,19 @@ requirements:
     - toolchain
     - zlib 1.2.*
     - mpich
-    - petsc    {{ petsc_version }}
-    - petsc4py {{ petsc_version }}
-    - slepc    {{ petsc_version }}
-    - slepc4py {{ petsc_version }}
-    - swig 3.0.*
+    - petsc    3.7.*
+    - petsc4py 3.7.*
+    - slepc    3.7.*
+    - slepc4py 3.7.*
+    - swig >=3.0.12,<3.1
     - numpy 1.13.*
     - ply
     - six
     - subprocess32  # [py2k]
     - sympy
-    - hdf5-parallel 1.8.*
-    - fenics-python-packages 2017.1.*
+    - hdf5 >=1.8.18,<1.9 *tue*
+    - ffc     2017.1.*   *tue*
+    - instant 2017.1.*   *tue*
 
   run:
     - python {{ python }}
@@ -52,21 +46,22 @@ requirements:
     - eigen
     - gcc
     - mpich
-    - petsc    {{ petsc_version }}
-    - petsc4py {{ petsc_version }}
-    - slepc    {{ petsc_version }}
-    - slepc4py {{ petsc_version }}
+    - petsc    3.7.*
+    - petsc4py 3.7.*
+    - slepc    3.7.*
+    - slepc4py 3.7.*
     - pkg-config
     - ptscotch
     - zlib 1.2.*
     - ply
-    - swig 3.0.*
+    - swig >=3.0.12,<3.1
     - numpy 1.13.*
     - six
     - subprocess32  # [py2k]
     - sympy
-    - hdf5-parallel 1.8.*
-    - fenics-python-packages 2017.1.*
+    - hdf5 >=1.8.18,<1.9 *tue*
+    - ffc     2017.1.*   *tue*
+    - instant 2017.1.*   *tue*
 
 test:
   files:
@@ -84,7 +79,6 @@ about:
   license: LGPL 3.0
   license_file: COPYING.LESSER
   summary: 'FEniCS is a collection of free software for automated, efficient solution of differential equations'
-
   description: |
     FEniCS is a collection of free software for automated, efficient solution of differential equations
     (<http://fenicsproject.org>). It provides C++ and Python interfaces, and creates effecient solvers via

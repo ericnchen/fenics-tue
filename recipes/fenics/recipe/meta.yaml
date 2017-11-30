@@ -1,21 +1,18 @@
-{% set build_number = '0' %}
-
-{% set python_string = ''.join(['py'] + python.split('.')[:2]) %}
-
 package:
   name: fenics
-  version: 2017.1.0
+  version: "2017.1.0"
 
 build:
-  number: {{ build_number }}
-  string: {{ python_string }}_{{ build_number }}
+  number: 0
+  string: py{{ CONDA_PY }}_tue_{{ PKG_BUILDNUM }}
 
 requirements:
   build:
     - python {{ python }}
+    - dolfin 2017.1.* *tue*
+    - mshr
 
   run:
     - python {{ python }}
-    - fenics-dolfin 2017.1.*
-    - fenics-python-packages 2017.1.*
-#    - fenics-mshr 2017.1.*
+    - dolfin 2017.1.* *tue*
+    - mshr

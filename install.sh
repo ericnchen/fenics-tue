@@ -85,6 +85,11 @@ build() {
   #   build fenics 2.7
   #   build fenics 3.5
 
+  check_internet
+  if [ "${?}" != "0" ]; then
+    export https_proxy="https://${PROXY_SERVER}:443"
+  fi
+
   check_directory "recipes/${1}"
   if [ "${?}" == "1" ]; then
     echo "ERROR: Recipe for ${1} was not found."

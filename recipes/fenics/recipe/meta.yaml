@@ -10,9 +10,9 @@ requirements:
   build:
     - python {{ python }}
     - dolfin 2017.1.* *tue*
-    - mshr
+    - mshr   2017.1.* *tue*
 
   run:
     - python {{ python }}
     - dolfin 2017.1.* *tue*
-    - mshr
+    - mshr   2017.1.* *tue*

@@ -96,19 +96,43 @@ build() {
     return 1
   fi
 
-  echo "Building ${1} for Python ${2} ..."
-
-  "${PREFIX_TARGET}/conda/bin/conda" build "recipes/${1}"        \
-                                           --python "${2}"       \
-                                           --channel conda-forge
-
-  "${PREFIX_TARGET}/conda/bin/conda" build purge
+  echo "Building ${1} ..."
+  conda_build "${1}"
+  conda_build purge
 }
 
 
-build_all() {
-  # Build all "distributions" of FEniCS.
+conda_build() {
+  # Shortcut to the conda build command.
+  #
+  # Usage
+  #   conda_build name_of_recipe
 
-  build fenics 3.5
-  build fenics 2.7
+  if [ "${1}" != "purge" ]; then
+    "${PREFIX_TARGET}/conda/bin/conda" build "recipes/${1}" -c system -c conda-forge
+
+  else
+    "${PREFIX_TARGET}/conda/bin/conda" build purge
+  fi
+}
+
+
+build_fenics() {
+  # Build the regular FEniCS package collection, for both Python 2.7 and 3.5.
+  #
+  # Note: The below build order is required.
+
+  conda_build hdf5
+
+  conda_build dijitso
+  conda_build ufl
+  conda_build fiat
+  conda_build ffc
+  conda_build instant
+  conda_build dolfin
+  conda_build mshr
+
+  conda_build fenics
+
+  conda_build purge
 }

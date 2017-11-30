@@ -96,7 +96,6 @@ build() {
     return 1
   fi
 
-  echo "Building ${1} ..."
   conda_build "${1}"
   conda_build purge
 }
@@ -106,20 +105,25 @@ conda_build() {
   # Shortcut to the conda build command.
   #
   # Usage
-  #   conda_build name_of_recipe
+  #   conda_build recipe_name_or_purge
 
-  if [ "${1}" != "purge" ]; then
-    "${PREFIX_TARGET}/conda/bin/conda" build "recipes/${1}" -c system -c conda-forge
-
-  else
+  if [ "${1}" == "purge" ]; then
     "${PREFIX_TARGET}/conda/bin/conda" build purge
+    return 0
   fi
+
+  "${PREFIX_TARGET}/conda/bin/conda" build "recipes/${1}" -c system -c conda-forge
 }
 
 
 build_fenics() {
   # Build the regular FEniCS package collection, for both Python 2.7 and 3.5.
-  #
+
+  check_internet
+  if [ "${?}" != "0" ]; then
+    export https_proxy="https://${PROXY_SERVER}:443"
+  fi
+
   # Note: The below build order is required.
 
   conda_build hdf5

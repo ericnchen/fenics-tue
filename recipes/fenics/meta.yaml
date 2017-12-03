@@ -1,0 +1,25 @@
+package:
+  name: fenics
+  version: 2017.1.0
+
+build:
+  number: 0
+  track_features:
+    - tue
+
+requirements:
+  build:
+    - python {{ python }}
+#    - dolfin 2017.1.* *tue*
+#    - mshr   2017.1.* *tue*
+
+  run:
+    - python {{ python }}
+#    - dolfin 2017.1.* *tue*
+#    - mshr   2017.1.* *tue*
+
+#test:
+#  imports:
+#    - dolfin
+#    - fenics
+#    - mshr

@@ -1,0 +1,26 @@
+package:
+  name: fenics-python-components
+  version: 2017.1.0
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python {{ python }}
+
+  run:
+    - python {{ python }}
+    - subprocess32  # [py2k]
+    - six
+    - numpy
+    - sympy
+
+test:
+  imports:
+    - dijitso
+    - ufl
+    - instant
+    - FIAT
+    - ffc
+

@@ -40,32 +40,6 @@ check_directory() {
 }
 
 
-install_conda_base() {
-  # Installs the conda base system.
-
-  check_internet
-  if [ "${?}" != "0" ]; then
-    export https_proxy="https://${PROXY_SERVER}:443"
-  fi
-
-  check_directory "${PREFIX_TARGET}/conda"
-  if [ "${?}" == "1" ]; then
-    local RNG="${RANDOM}${RANDOM}"
-    local SYS="$([ "$(uname -s)" == "Darwin" ] && echo "MacOSX" || echo "Linux")"
-    local URL="https://repo.continuum.io/miniconda/Miniconda3-latest-${SYS}-x86_64.sh"
-
-    echo "Downloading Miniconda ..."
-    wget -q -O "/tmp/miniconda${RNG}.sh" "${URL}"
-
-    echo "Installing Miniconda to ${PREFIX_TARGET}/conda ..."
-    bash "/tmp/miniconda${RNG}.sh" -b -p "${PREFIX_TARGET}/conda" > /dev/null 2>&1
-    rm   "/tmp/miniconda${RNG}.sh"
-
-    "${PREFIX_TARGET}/conda/bin/conda" install -y conda-build > /dev/null 2>&1
-  fi
-}
-
-
 install() {
   # Installs the conda base system and then the appropriate FEniCS version(s).
   # TODO Revisit this.

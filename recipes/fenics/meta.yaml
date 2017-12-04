@@ -4,22 +4,17 @@ package:
 
 build:
   number: 0
-  track_features:
-    - tue
+  string: tue_py{{ CONDA_PY }}_{{ PKG_BUILDNUM }}
 
 requirements:
-  build:
-    - python {{ python }}
-#    - dolfin 2017.1.* *tue*
-#    - mshr   2017.1.* *tue*
-
   run:
+    - nomkl
     - python {{ python }}
-#    - dolfin 2017.1.* *tue*
-#    - mshr   2017.1.* *tue*
+    - dolfin 2017.1.0 tue*
+    - mshr 2017.1.0 tue*
 
-#test:
-#  imports:
-#    - dolfin
-#    - fenics
-#    - mshr
+test:
+  imports:
+    - dolfin
+    - fenics
+    - mshr

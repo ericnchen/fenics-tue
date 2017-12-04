@@ -5,7 +5,7 @@ export LIBRARY_PATH="${PREFIX}/lib"
 ./configure --prefix="${PREFIX}" \
             --enable-linux-lfs \
             --with-zlib="${PREFIX}" \
-            --with-pthread=yes  \
+            --with-pthread=yes \
             --enable-cxx \
             --disable-fortran \
             --disable-fortran2003 \
@@ -19,10 +19,11 @@ export LIBRARY_PATH="${PREFIX}/lib"
             --disable-static \
             --enable-parallel \
             --enable-shared \
-            CC="${PREFIX}/bin/mpicc" CXX="${PREFIX}/bin/mpicxx" \
-            CFLAGS="-fPIC" CXXFLAGS="-fPIC"
+            CC="${PREFIX}/bin/mpicc"  \
+            CXX="${PREFIX}/bin/mpicxx" \
+            CFLAGS="-fPIC" \
+            CXXFLAGS="-fPIC"
 
-make -j 4
-make install -j 4
+make -j 4 install
 
-rm -rf $PREFIX/share/hdf5_examples
+rm -rf "${PREFIX}/share/hdf5_examples"

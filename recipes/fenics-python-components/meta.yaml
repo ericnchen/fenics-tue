@@ -4,12 +4,15 @@ package:
 
 build:
   number: 0
+  string: tue_py{{ CONDA_PY }}_{{ PKG_BUILDNUM }}
 
 requirements:
   build:
+    - nomkl
     - python {{ python }}
 
   run:
+    - nomkl
     - python {{ python }}
     - subprocess32  # [py2k]
     - six
@@ -23,4 +26,3 @@ test:
     - instant
     - FIAT
     - ffc
-

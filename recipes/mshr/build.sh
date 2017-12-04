@@ -5,7 +5,6 @@ LIBRARY_PATH="$PREFIX/lib"
 
 export LDFLAGS="-Wl,-rpath,$LIBRARY_PATH $LDFLAGS"
 
-
 mkdir build
 cd build
 
@@ -18,5 +17,5 @@ cmake \
   -DMSHR_ENABLE_VTK=0 \
   ..
 
-make -j 4 VERBOSE=1
+make -j 4
 make install

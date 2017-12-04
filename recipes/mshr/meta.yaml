@@ -1,0 +1,42 @@
+package:
+  name: mshr
+  version: 2017.1.0
+
+source:
+  url: https://bitbucket.org/fenics-project/mshr/downloads/mshr-2017.1.0.tar.gz
+  sha256: ec132dbc4c5469d8f828fc5c576c39c3d45cb231bd0b552585f9378c295ee689
+
+build:
+  number: 0
+  string: tue_py{{ CONDA_PY }}_{{ PKG_BUILDNUM }}
+
+requirements:
+  build:
+    - nomkl
+    - python {{ python }}
+    - gcc 4.8
+    - libgcc 4.8
+    - mpich
+    - boost-cpp
+    - cmake
+    - gmp
+    - mpfr
+    - swig
+    - eigen
+    - dolfin 2017.1.0 tue*
+
+  run:
+    - nomkl
+    - python {{ python }}
+    - gcc 4.8
+    - libgcc 4.8
+    - mpich
+    - boost-cpp
+    - dolfin 2017.1.0 tue*
+
+test:
+  source_files:
+    - test
+
+  imports:
+    - mshr

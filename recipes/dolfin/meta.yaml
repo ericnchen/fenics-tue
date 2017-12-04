@@ -1,0 +1,57 @@
+package:
+  name: dolfin
+  version: 2017.1.0
+
+source:
+  url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-2017.1.0.tar.gz
+  sha256: ba793a2d41995d65ce4ee9e955e06342a6357174420b727cfde9fc6c70590e92
+
+build:
+  number: 0
+  string: tue_py{{ CONDA_PY }}_{{ PKG_BUILDNUM }}
+
+requirements:
+  build:
+    - nomkl
+    - python {{ python }}
+    - cmake 
+    - gcc 4.8
+    - libgcc 4.8
+    - mpich
+    - boost
+    - eigen
+    - ply
+    - swig
+    - fenics-python-components
+    - sphinx
+    - petsc 3.8.1 tue_0
+    - petsc4py
+    - slepc
+    - slepc4py
+    - hdf5 1.8.19 tue_0
+    - doxygen
+
+  run:
+    - nomkl
+    - python {{ python }}
+    - gcc 4.8
+    - libgcc 4.8
+    - boost
+    - ply
+    - swig
+    - fenics-python-components
+    - petsc 3.8.1 tue_0
+    - petsc4py
+    - slepc
+    - slepc4py
+    - hdf5 1.8.19 tue_0
+
+test:
+  imports:
+    - dolfin
+    - fenics
+
+  commands:
+    - dolfin-version
+    - fenics-version
+

@@ -4,9 +4,20 @@
 
 PREFIX="${HOME}/fenics-tue/conda"
 
+bash check_internet.sh
+if [ "${?}" != "0" ]; then
+  if [ "$(hostname -s)" == "rng" ] || [ "$(hostname -s)" == "furnace" ]; then
+    export http_proxy="http://proxy.wfw.wtb.tue.nl:80"
+    export https_proxy="https://proxy.wfw.wtb.tue.nl:443"
+  else
+    echo "No internet connectivity available."
+    exit 1
+  fi
+fi
+
 if [ "${1}" == "purge" ]; then
   "${PREFIX}/conda/bin/conda" build purge
-  return 0
+  exit 0
 fi
 
 "${PREFIX}/bin/conda" build "recipes/${1}" \

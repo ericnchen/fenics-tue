@@ -16,7 +16,7 @@ if [ "${?}" != "0" ]; then
 fi
 
 if [ "${1}" == "purge" ]; then
-  "${PREFIX}/conda/bin/conda" build purge
+  "${PREFIX}/bin/conda" build purge
   exit 0
 fi
 

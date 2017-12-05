@@ -1,0 +1,5 @@
+# fenics-hpc-components requirements.txt
+https://fenicsproject.org/pub/software/instant/v0.9/instant-0.9.5.tar.gz --hash=sha256:c7ceb8e95a08f4831ff168c3a3fc8fc3d1ba2f63407eff0f4ff5f8471ad90ec8
+https://fenicsproject.org/pub/software/fiat/FIAT-0.3.4.tar.gz --hash=sha256:929f65d03f18eb4f7156055a6df2a1dc9302dd22ae293bd61703f5b07fd6f1d1
+https://fenicsproject.org/pub/software/ffc/v0.5/ffc-0.5.1.tar.gz --hash=sha256:a27defcf215798856ee9ead3bd13ca1eaae25cdac12b34c45c9f997abab8a8fa
+https://fenicsproject.org/pub/software/ufc/v1.1/ufc-1.1.tar.gz --hash=sha256:087f9894829830bd17bfda360348b4981af0a48e019f2e43b4fdd7da7ca1e141

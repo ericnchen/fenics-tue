@@ -1,0 +1,24 @@
+package:
+  name: fenics-hpc-components
+  version: 0.0.0
+
+build:
+  number: 0
+  string: tue_py{{ CONDA_PY }}_{{ PKG_BUILDNUM }}
+
+requirements:
+  build:
+    - nomkl
+    - python {{ python }}
+
+  run:
+    - nomkl
+    - python {{ python }}
+    - numpy
+
+test:
+  imports:
+    - instant
+    - FIAT
+    - ffc
+    - ufc

@@ -40,14 +40,6 @@ check_directory() {
 }
 
 
-install() {
-  # Installs the conda base system and then the appropriate FEniCS version(s).
-  # TODO Revisit this.
-
-  install_conda_base
-}
-
-
 build() {
   # Build a conda package defined in recipes.
   #

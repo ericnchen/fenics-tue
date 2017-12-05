@@ -22,7 +22,7 @@ requirements:
     - eigen
     - ply
     - swig
-    - fenics-python-components
+    - fenics-components
     - sphinx
     - petsc 3.8.1 tue_0
     - petsc4py
@@ -39,7 +39,7 @@ requirements:
     - boost
     - ply
     - swig
-    - fenics-python-components
+    - fenics-components
     - petsc 3.8.1 tue_0
     - petsc4py
     - slepc

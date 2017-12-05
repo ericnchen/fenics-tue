@@ -7,7 +7,7 @@ bash conda_build petsc
 
 bash conda_build hdf5
 
-bash conda_build fenics-python-components
+bash conda_build fenics-components
 
 bash conda_build dolfin
 bash conda_build mshr

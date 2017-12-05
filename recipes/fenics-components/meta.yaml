@@ -1,5 +1,5 @@
 package:
-  name: fenics-python-components
+  name: fenics-components
   version: 2017.1.0
 
 build:

@@ -2,16 +2,16 @@
 #
 # Build all conda packages in the appropriate order.
 
-bash conda_build.sh mumps
-bash conda_build.sh petsc
+bash conda_build mumps
+bash conda_build petsc
 
-bash conda_build.sh hdf5
+bash conda_build hdf5
 
-bash conda_build.sh fenics-python-components
+bash conda_build fenics-python-components
 
-bash conda_build.sh dolfin
-bash conda_build.sh mshr
+bash conda_build dolfin
+bash conda_build mshr
 
-bash conda_build.sh fenics
+bash conda_build fenics
 
-bash conda_build.sh purge
+bash conda_build purge

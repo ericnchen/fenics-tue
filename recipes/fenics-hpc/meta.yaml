@@ -1,0 +1,14 @@
+package:
+  name: fenics-hpc
+  version: 0.0.0
+
+build:
+  number: 0
+  string: tue_py{{ CONDA_PY }}_{{ PKG_BUILDNUM }}
+
+requirements:
+  run:
+    - nomkl
+    - python {{ python }}
+    - dolfin-hpc 0.8.2 tue_0
+    - unicorn-hpc 0.1.3 tue_0

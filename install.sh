@@ -67,21 +67,6 @@ build() {
 }
 
 
-conda_build() {
-  # Shortcut to the conda build command.
-  #
-  # Usage
-  #   conda_build recipe_name_or_purge
-
-  if [ "${1}" == "purge" ]; then
-    "${PREFIX_TARGET}/conda/bin/conda" build purge
-    return 0
-  fi
-
-  "${PREFIX_TARGET}/conda/bin/conda" build "recipes/${1}" -c system -c conda-forge
-}
-
-
 build_fenics() {
   # Build the regular FEniCS package collection, for both Python 2.7 and 3.5.
 

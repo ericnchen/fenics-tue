@@ -20,3 +20,4 @@ requirements:
 
   run:
     - nomkl
+    - glib

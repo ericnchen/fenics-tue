@@ -1,0 +1,64 @@
+package:
+  name: dolfin-hpc
+  version: 0.8.4
+
+source:
+  url: https://bitbucket.org/fenics-hpc/dolfin-hpc/get/0.8.4-hpc.tar.bz2
+  sha256: 6bed8a8340b3c8a351049b3b65a1f5b180f6fe7b40261767cc4064bdc5a580ff
+  patches:
+    - ax_petsc.m4.patch
+
+build:
+  number: 0
+  string: tue_py{{ CONDA_PY }}_{{ PKG_BUILDNUM }}
+
+requirements:
+  build:
+    - nomkl
+    - python {{ python }}
+    - libtool
+    - automake
+    - libxml2
+    - gcc 4.8
+    - libgcc 4.8
+    - mpich
+    - pkgconfig
+    - fenics-hpc-components
+    - metis
+    - parmetis
+    - gts 0.7.6 tue_0
+    - petsc-hpc 3.8.1 tue_0
+
+#    - boost
+#    - eigen
+#    - sphinx
+#    - petsc 3.8.1 tue_0
+#    - petsc4py
+#    - slepc
+#    - slepc4py
+#    - hdf5 1.8.19 tue_0
+#    - doxygen
+
+#  run:
+#    - nomkl
+#    - python {{ python }}
+#    - gcc 4.8
+#    - libgcc 4.8
+#    - boost
+#    - ply
+#    - swig
+#    - fenics-components
+#    - petsc 3.8.1 tue_0
+#    - petsc4py
+#    - slepc
+#    - slepc4py
+#    - hdf5 1.8.19 tue_0
+
+#test:
+#  imports:
+#    - dolfin
+#    - fenics
+
+#  commands:
+#    - dolfin-version
+#    - fenics-version

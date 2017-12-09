@@ -1,0 +1,20 @@
+--- m4/ax_petsc.m4	2017-12-09 16:33:15.488483324 +0100
++++ m4/ax_petsc.m4.petsc_path_fix	2017-12-09 16:41:21.541385283 +0100
+@@ -14,7 +14,7 @@
+ 	[Directory for petsc]),
+ 	[	   
+ 	if test -d "$withval"; then
+-		ac_petsc_dir="$withval"
++		ac_petsc_dir="$withval/lib/petsc"
+ 		PETSC_DIR="$withval"
+ 		export PETSC_DIR
+ 		AC_SUBST(PETSC_DIR)
+@@ -43,7 +43,7 @@
+ 	   elif test -d "$ac_petsc_dir/conf"; then
+ 	   
+           cat <<EOF >config_petsc
+-include $PETSC_DIR/conf/variables
++include $PETSC_DIR/lib/petsc/conf/variables
+ 
+ petsclibs:
+ 	echo -L$PETSC_DIR/lib/  \$(PETSC_LIB)

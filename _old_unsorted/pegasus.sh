@@ -3,14 +3,6 @@
 # This folder must have the following folders: dolfin-hpc, unicorn-hpc
 WORK_DIR="${HOME}/software/pegasus"
 
-fix_ufc_pkgconfig () {
-  # The UFC we just installed to --user has the incorrect path in its pkgconfig file.
-  # The file is in $HOME/.local/lib/python2.7/site-packages/usr/lib/pkgconfig.
-  # Change it from -I/usr/include to -I$HOME/.local/lib/python2.7/site-packages/usr/include.
-  # This could also be done manually instead of using sed.
-  sed -i "s|-I/usr|-I${HOME}/.local/lib/python2.7/site-packages/usr|g" "$(find ${HOME}/.local -name ufc-1.pc)"
-}
-
 build_install_dolfin_hpc () {
   # Add the UFC pkgconfig file path to PKG_CONFIG_PATH so that it can be discovered.
   export PKG_CONFIG_PATH="$(find ${HOME}/.local -name ufc-1.pc -exec dirname {} \;)"
@@ -89,7 +81,6 @@ run_unicorn_testcase () {
   mpirun -np 4 cube -p parameters -m mesh.xml
 }
 
-#fix_ufc_pkgconfig
 #build_install_dolfin_hpc
 #fix_dolfin_pkgconfig
 #build_install_unicorn_hpc

@@ -1,0 +1,37 @@
+package:
+  name: petsc-hpc
+  version: 3.8.1
+
+source:
+  fn: petsc-3.8.1.tar.gz
+  url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.8.1.tar.gz
+  sha256: fdc94525422c41ed617b38d09723bb27c6dbf4831c4c6cc1e27850e60788ccfa
+
+build:
+  number: 0
+  string: tue_{{ PKG_BUILDNUM }}
+  binary_relocation: true
+  detect_binary_files_with_prefix: true
+
+requirements:
+  build:
+    - nomkl
+    - python 2.7
+    - gcc 4.8
+    - libgcc 4.8
+    - mpich
+    - openblas
+
+  run:
+    - nomkl
+    - gcc 4.8
+    - libgcc 4.8
+    - mpich
+    - openblas
+
+test:
+  source_files:
+    - src/snes/examples/tests
+
+  commands:
+    - conda inspect linkages petsc-hpc

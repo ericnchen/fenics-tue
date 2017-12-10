@@ -13,14 +13,9 @@ build:
 
 requirements:
   build:
-    - cloog       0.18.0 0
     - gcc         4.8.5  7
-    - gmp         6.1.2  0
-    - isl         0.12.2 0
     - libgcc      4.8.5  2
     - libgfortran 3.0.0  1
-    - mpc         1.0.3  4
-    - mpfr        3.1.5  0
     - mpich       3.2    5
     - openblas    0.2.20 6
     - ptscotch    6.0.4  4

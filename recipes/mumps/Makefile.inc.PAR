@@ -5,9 +5,6 @@
 # These settings for a PC under Debian/linux with standard packages :
 # metis (parmetis), scotch (ptscotch), mpich, gfortran
 
-# packages installation : 
-# apt-get install libmetis-dev libparmetis-dev libscotch-dev libptscotch-dev libatlas-base-dev mpich-bin libmpich-dev  
-
 # Begin orderings
 LSCOTCH = -L$(PREFIX)/lib -lptesmumps -lptscotch -lptscotcherr -lscotcherr -lscotch
 ISCOTCH = -I$(PREFIX)/include
@@ -29,19 +26,16 @@ IORDERINGSC = $(ISCOTCH) $(IPORD)
 
 ################################################################################
 
-PLAT    =
-LIBEXT  = .a
-OUTC    = -o 
-OUTF    = -o
-RM = /bin/rm -f
-CC = mpicc
-FC = mpifort
-FL = mpifort
-AR = ar vr 
+PLAT   =
+LIBEXT = .a
+OUTC   = -o
+OUTF   = -o
+RM     = /bin/rm -f
+CC     = mpicc
+FC     = mpifort
+FL     = mpifort
+AR     = ar vr 
 RANLIB = ranlib
-
-# SCALAP  = -lscalapack -lblacs -lblacsF77init -lblacsCinit
-# LIBPAR = $(SCALAP)   -lmpi -lmpi_f77
 
 SCALAP = -lscalapack
 
@@ -51,13 +45,13 @@ LIBPAR = $(SCALAP) -lmpi
 LIBBLAS   = -lblas
 LIBOTHERS = -lpthread
 
-#Preprocessor defs for calling Fortran from C (-DAdd_ or -DAdd__ or -DUPPER)
+# Preprocessor defs for calling Fortran from C (-DAdd_ or -DAdd__ or -DUPPER)
 CDEFS   = -DAdd_
 
-#Begin Optimized options
-OPTF = -O3 -fPIC -DALLOW_NON_INIT
-OPTL = -O3 -fPIC
-OPTC = -O3 -fPIC
+# Begin Optimized options
+OPTF = -O3 -DALLOW_NON_INIT
+OPTL = -O3 -DALLOW_NON_INIT
+OPTC = -O3 -DALLOW_NON_INIT
 #End Optimized options
 
 INCS = $(INCPAR)

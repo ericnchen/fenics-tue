@@ -8,31 +8,32 @@ source:
 
 build:
   number: 0
-  string: tue_{{ PKG_BUILDNUM }}
+  features:
+    - tue
 
 requirements:
   build:
-    - nomkl
-    - gcc 4.8
-    - libgcc 4.8
-    - mpich
-    - scotch 6.0.4
-    - ptscotch 6.0.4
-    - openblas
-    - scalapack
+    - cloog       0.18.0 0
+    - gcc         4.8.5  7
+    - gmp         6.1.2  0
+    - isl         0.12.2 0
+    - libgcc      4.8.5  2
+    - libgfortran 3.0.0  1
+    - mpc         1.0.3  4
+    - mpfr        3.1.5  0
+    - mpich       3.2    5
+    - openblas    0.2.20 6
+    - ptscotch    6.0.4  4
+    - scalapack   2.0.2  1
+    - scotch      6.0.4  3
+    - zlib        1.2.11 0
 
   run:
-    - nomkl
+    - tue
 
 test:
+  source_files:
+    - examples
+
   commands:
-    - test -f "${PREFIX}/lib/libzmumps.a"
-    - test -f "${PREFIX}/lib/libcmumps.a"
-    - test -f "${PREFIX}/lib/libdmumps.a"
-    - test -f "${PREFIX}/lib/libsmumps.a"
-    - test -f "${PREFIX}/lib/libmumps_common.a"
-    - test -f "${PREFIX}/lib/libpord.a"
-    - test -f "${PREFIX}/include/dmumps_struc.h"
-    - test -f "${PREFIX}/include/zmumps_struc.h"
-    - test -f "${PREFIX}/include/cmumps_struc.h"
-    - test -f "${PREFIX}/include/smumps_struc.h"
+    - conda inspect linkages mumps

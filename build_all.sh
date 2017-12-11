@@ -2,9 +2,6 @@
 #
 # Build all conda packages in the appropriate order.
 
-# Exit on any errors.
-set -e
-
 bash conda_build mumps
 bash conda_build petsc
 

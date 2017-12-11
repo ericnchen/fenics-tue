@@ -10,23 +10,25 @@ source:
 
 build:
   number: 0
-  string: tue_{{ PKG_BUILDNUM }}
-  detect_binary_files_with_prefix: True
+  features:
+    - tue
 
 requirements:
   build:
-    - nomkl
-    - gcc 4.8
-    - libgcc 4.8
-    - mpich
+    - gcc         4.8.5  7
+    - libgcc      4.8.5  2
+    - mpich       3.2    5
+    - zlib        1.2.11 0
 
   run:
-    - nomkl
-    - gcc 4.8
-    - libgcc 4.8
-    - mpich
+    - gcc         4.8.5  7
+    - libgcc      4.8.5  2
+    - mpich       3.2    5
+    - tue
+    - zlib        1.2.11 0
 
 test:
   commands:
     - h5perf
     - h5perf_serial
+    - conda inspect linkages hdf5

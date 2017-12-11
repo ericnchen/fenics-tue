@@ -13,51 +13,14 @@ build:
 
 requirements:
   build:
-    - boost             1.65.1
-    - boost-cpp         1.65.1
     - cmake
     - dolfin            2017.1.0
-    - eigen             3.3.3    0
-    - fenics-components 2017.1.0
-    - gcc               4.8.5    7
-    - hdf5              1.8.19   tue_0
-    - hypre             2.11.2   1
-    - libgcc            4.8.5    2
-    - libgfortran       3.0.0    1
-    - metis             5.1.0    3
-    - mpich             3.2      5
-    - mumps             5.0.2    tue_0
-    - openblas          0.2.20   6
-    - petsc             3.8.1    tue_0
-    - petsc4py          3.8.1
-    - ptscotch          6.0.4    4
     - python {{ python }}
-    - scalapack         2.0.2    1
-    - scotch            6.0.4    3
     - swig              3.0.12   2
 
-#    - gmp
-#    - mpfr
-
   run:
-    - boost             1.65.1
-    - boost-cpp         1.65.1
     - dolfin            2017.1.0
-    - fenics-components 2017.1.0
-    - gcc               4.8.5    7
-    - hdf5              1.8.19   tue_0
-    - hypre             2.11.2   1
-    - libgcc            4.8.5    2
-    - libgfortran       3.0.0    1
-    - metis             5.1.0    3
-    - mpich             3.2      5
-    - openblas          0.2.20   6
-    - petsc             3.8.1    tue_0
-    - petsc4py          3.8.1
     - python {{ python }}
-    - scalapack         2.0.2    1
-    - suitesparse       4.5.4    blas_openblas_201
-    - zlib              1.2.11   0
 
 test:
   source_files:

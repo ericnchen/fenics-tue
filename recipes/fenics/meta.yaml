@@ -4,17 +4,21 @@ package:
 
 build:
   number: 0
-  string: tue_py{{ CONDA_PY }}_{{ PKG_BUILDNUM }}
+  features:
+    - tue
 
 requirements:
   run:
-    - nomkl
+    - dolfin              2017.1.0
+    - mshr                2017.1.0
     - python {{ python }}
-    - dolfin 2017.1.0 tue*
-    - mshr 2017.1.0 tue*
+    - tue
 
 test:
   imports:
     - dolfin
     - fenics
     - mshr
+
+  commands:
+    - conda inspect linkages fenics

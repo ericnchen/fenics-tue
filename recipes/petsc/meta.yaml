@@ -41,7 +41,6 @@ requirements:
     - scalapack   2.0.2  1
     - scotch      6.0.4  3
     - suitesparse 4.5.4  blas_openblas_201
-    - tue
 
 test:
   requires:

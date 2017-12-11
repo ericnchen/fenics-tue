@@ -8,13 +8,6 @@
 
 rm -rf build && mkdir build && cd build
 
-#export LIBRARY_PATH=$PREFIX/lib
-#export INCLUDE_PATH=$PREFIX/include
-
-#export PETSC_DIR=$PREFIX
-#export SLEPC_DIR=$PREFIX
-#export BLAS_DIR=$LIBRARY_PATH
-
 cmake ..                             \
   -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
   -DDOLFIN_ENABLE_GTEST=0            \
@@ -28,9 +21,9 @@ cmake ..                             \
 make -j 4 install
 
 # Don't include demos in installed package
-rm -rf $PREFIX/share/dolfin/demo
+rm -rf "${PREFIX}/share/dolfin/demo"
 
 # remove paths for unused deps in cmake files
 # these paths may not exist on targets and aren't needed,
 # but cmake will die with 'no rule to make /Applications/...libclang_rt.osx.a'
-find $PREFIX/share/dolfin -name '*.cmake' -print -exec sh -c "sed -E -i''  's@/usr/lib(64)?/[^;]*(.so|.a);@@g' {}" \;
+find "${PREFIX}/share/dolfin" -name '*.cmake' -print -exec sh -c "sed -E -i''  's@/usr/lib(64)?/[^;]*(.so|.a);@@g' {}" \;

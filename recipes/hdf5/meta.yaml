@@ -18,14 +18,14 @@ requirements:
     - gcc         4.8.5  7
     - libgcc      4.8.5  2
     - mpich       3.2    5
-    - zlib        1.2.11 0
+    - zlib
 
   run:
     - gcc         4.8.5  7
     - libgcc      4.8.5  2
     - mpich       3.2    5
     - tue
-    - zlib        1.2.11 0
+    - zlib
 
 test:
   commands:

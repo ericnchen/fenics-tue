@@ -7,16 +7,20 @@ unset CC
 unset CXX
 unset FC
 
+export LDFLAGS="-pthread ${LDFLAGS}"
+
+OPTFLAGS="-O3"
+
 ./configure                                        \
   --prefix="${PREFIX}"                             \
   --with-debugging=0                               \
   --CPPFLAGS="${CPPFLAGS}"                         \
   --CFLAGS="${CFLAGS}"                             \
-  --COPTFLAGS='-O3'                                \
   --CXXFLAGS="${CXXFLAGS}"                         \
-  --CXXOPTFLAGS='-O3'                              \
   --FFLAGS="${FFLAGS}"                             \
-  --FOPTFLAGS='-O3'                                \
+  --COPTFLAGS="${OPTFLAGS}"                        \
+  --CXXOPTFLAGS="${OPTFLAGS}"                      \
+  --FOPTFLAGS="${OPTFLAGS}"                        \
   --LDFLAGS="${LDFLAGS}"                           \
   --with-blas-lapack-lib="libopenblas${SHLIB_EXT}" \
   --with-ptscotch=1                                \

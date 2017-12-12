@@ -8,6 +8,9 @@ build:
     - tue
 
 requirements:
+  build:
+    - python {{ python }}
+
   run:
     - dolfin              2017.1.0
     - mshr                2017.1.0

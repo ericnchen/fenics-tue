@@ -9,7 +9,7 @@
 
 #bash conda_build gts
 
-bash conda_build fenics-hpc-components
+bash conda_build fenics-components 2008.1.0
 
 #bash conda_build dolfin
 

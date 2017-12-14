@@ -1,0 +1,6 @@
+_old_unsorted/pegasus.sh
+recipes/dolfin-hpc
+recipes/fenics-hpc-components
+recipes/fenics-hpc
+recipes/gts
+recipes/petsc-hpc

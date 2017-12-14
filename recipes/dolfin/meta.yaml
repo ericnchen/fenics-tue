@@ -8,43 +8,35 @@ source:
 
 build:
   number: 0
-  string: tue_py{{ CONDA_PY }}_{{ PKG_BUILDNUM }}
+  features:
+    - tue
 
 requirements:
   build:
-    - nomkl
-    - python {{ python }}
-    - cmake 
-    - gcc 4.8
-    - libgcc 4.8
-    - mpich
-    - boost
-    - eigen
-    - ply
-    - swig
-    - fenics-components
-    - sphinx
-    - petsc 3.8.1 tue_0
-    - petsc4py
-    - slepc
-    - slepc4py
-    - hdf5 1.8.19 tue_0
+    - boost             1.65.1
+    - boost-cpp         1.65.1
+    - cmake
     - doxygen
+    - eigen             3.3.3    0
+    - fenics-components 2017.1.0
+    - hdf5              1.8.19   tue_0
+    - petsc             3.8.1    tue_0
+    - petsc4py          3.8.1
+    - ply
+    - python {{ python }}
+    - sphinx
+    - swig              3.0.12   2
 
   run:
-    - nomkl
-    - python {{ python }}
-    - gcc 4.8
-    - libgcc 4.8
-    - boost
+    - boost             1.65.1
+    - boost-cpp         1.65.1
+    - eigen             3.3.3    0
+    - fenics-components 2017.1.0
+    - hdf5              1.8.19   tue_0
+    - petsc             3.8.1    tue_0
+    - petsc4py          3.8.1
     - ply
-    - swig
-    - fenics-components
-    - petsc 3.8.1 tue_0
-    - petsc4py
-    - slepc
-    - slepc4py
-    - hdf5 1.8.19 tue_0
+    - python {{ python }}
 
 test:
   imports:
@@ -54,4 +46,4 @@ test:
   commands:
     - dolfin-version
     - fenics-version
-
+    - conda inspect linkages dolfin

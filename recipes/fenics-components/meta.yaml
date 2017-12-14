@@ -4,20 +4,22 @@ package:
 
 build:
   number: 0
-  string: tue_py{{ CONDA_PY }}_{{ PKG_BUILDNUM }}
+  features:
+    - tue
 
 requirements:
   build:
-    - nomkl
     - python {{ python }}
 
   run:
-    - nomkl
-    - python {{ python }}
-    - subprocess32  # [py2k]
-    - six
+    - libgfortran 3.0.0  1
     - numpy
+    - openblas    0.2.20 6
+    - python {{ python }}
+    - six
+    - subprocess32 # [py2k]
     - sympy
+    - tue
 
 test:
   imports:
@@ -26,3 +28,6 @@ test:
     - instant
     - FIAT
     - ffc
+
+  commands:
+    - conda inspect linkages fenics-components

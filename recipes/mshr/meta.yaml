@@ -8,31 +8,19 @@ source:
 
 build:
   number: 0
-  string: tue_py{{ CONDA_PY }}_{{ PKG_BUILDNUM }}
+  features:
+    - tue
 
 requirements:
   build:
-    - nomkl
-    - python {{ python }}
-    - gcc 4.8
-    - libgcc 4.8
-    - mpich
-    - boost-cpp
     - cmake
-    - gmp
-    - mpfr
-    - swig
-    - eigen
-    - dolfin 2017.1.0 tue*
+    - dolfin            2017.1.0
+    - python {{ python }}
+    - swig              3.0.12   2
 
   run:
-    - nomkl
+    - dolfin            2017.1.0
     - python {{ python }}
-    - gcc 4.8
-    - libgcc 4.8
-    - mpich
-    - boost-cpp
-    - dolfin 2017.1.0 tue*
 
 test:
   source_files:
@@ -40,3 +28,6 @@ test:
 
   imports:
     - mshr
+
+  commands:
+    - conda inspect linkages mshr

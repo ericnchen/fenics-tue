@@ -2,15 +2,7 @@
 
 cp "${RECIPE_DIR}/Makefile.inc.PAR" ./Makefile.inc
 
-make all
+make -j 4 all
 
 cp lib/*.a     "${PREFIX}/lib"
 cp include/*.h "${PREFIX}/include"
-
-cd examples
-
-./ssimpletest < input_simpletest_real
-./dsimpletest < input_simpletest_real
-./csimpletest < input_simpletest_cmplx
-./zsimpletest < input_simpletest_cmplx
-./c_example

@@ -2,7 +2,8 @@
 #
 # Download and install the Anaconda Python distribution and build tools.
 
-PREFIX="${HOME}/fenics-tue/conda"
+PREFIX="${HOME}/fenics-tue"
+CONDA_DIR="${PREFIX}/conda"
 
 FN="/tmp/miniconda${RANDOM}${RANDOM}.sh"
 URL='https://repo.continuum.io/miniconda/Miniconda3-4.3.30-Linux-x86_64.sh'
@@ -25,5 +26,8 @@ if [ "$(md5sum ${FN} | awk '{ print $1 }')" != "${MD5}" ]; then
   exit 1
 fi
 
-bash "${FN}" -b -p "${PREFIX}" && "${PREFIX}/bin/conda" install -y conda-build
-rm "${FN}"
+# Install conda.
+bash "${FN}" -b -p "${CONDA_DIR}" && "${CONDA_DIR}/bin/conda" install -y conda-build && rm "${FN}"
+
+# Link the default ${CONDA_DIR}/bin directory to ${PREFIX}/bin.
+ln -s "${CONDA_DIR}/bin/" "${PREFIX}/bin"

@@ -10,4 +10,3 @@ assert has_krylov_solver_preconditioner('hypre_euclid')
 assert has_krylov_solver_preconditioner('hypre_parasails')
 assert has_lu_solver_method('mumps')
 assert has_petsc()
-

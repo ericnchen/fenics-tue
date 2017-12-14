@@ -2,27 +2,26 @@
 
 export LIBRARY_PATH="${PREFIX}/lib"
 
-./configure --prefix="${PREFIX}" \
-            --enable-linux-lfs \
-            --with-zlib="${PREFIX}" \
-            --with-pthread=yes \
-            --enable-cxx \
-            --disable-fortran \
-            --disable-fortran2003 \
-            --with-default-plugindir="${PREFIX}/lib/hdf5/plugin" \
-            --enable-threadsafe \
-            --enable-production \
-            --enable-unsupported \
-            --with-ssl \
-            --disable-debug \
-            --disable-hl \
-            --disable-static \
-            --enable-parallel \
-            --enable-shared \
-            CC="${PREFIX}/bin/mpicc"  \
-            CXX="${PREFIX}/bin/mpicxx" \
-            CFLAGS="-fPIC" \
-            CXXFLAGS="-fPIC"
+./configure                                            \
+  CC="${PREFIX}/bin/mpicc"                             \
+  CFLAGS="-fPIC"                                       \
+  CXX="${PREFIX}/bin/mpicxx"                           \
+  CXXFLAGS="-fPIC"                                     \
+  --prefix="${PREFIX}"                                 \
+  --disable-debug                                      \
+  --enable-production                                  \
+  --enable-cxx                                         \
+  --disable-fortran                                    \
+  --disable-fortran2003                                \
+  --disable-hl                                         \
+  --enable-parallel                                    \
+  --disable-static                                     \
+  --enable-shared                                      \
+  --enable-threadsafe                                  \
+  --enable-unsupported                                 \
+  --with-pthread=yes                                   \
+  --with-default-plugindir="${PREFIX}/lib/hdf5/plugin" \
+  --with-zlib="${PREFIX}"
 
 make -j 4 install
 

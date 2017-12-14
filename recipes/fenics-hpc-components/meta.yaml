@@ -1,20 +1,22 @@
 package:
-  name: fenics-hpc-components
-  version: 0.0.0
+  name: fenics-components
+  version: 2008.1.0
 
 build:
   number: 0
-  string: tue_py{{ CONDA_PY }}_{{ PKG_BUILDNUM }}
+  features:
+    - tue
 
 requirements:
   build:
-    - nomkl
     - python {{ python }}
 
   run:
-    - nomkl
-    - python {{ python }}
+    - libgfortran 3.0.0  1
     - numpy
+    - openblas    0.2.20 6
+    - python {{ python }}
+    - tue
 
 test:
   imports:
@@ -22,3 +24,6 @@ test:
     - FIAT
     - ffc
     - ufc
+
+  commands:
+    - conda inspect linkages fenics-components

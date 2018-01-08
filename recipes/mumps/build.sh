@@ -2,7 +2,7 @@
 
 cp "${RECIPE_DIR}/Makefile.inc.PAR" ./Makefile.inc
 
-make -j 4 all
+make -j 1 all
 
 cp lib/*.a     "${PREFIX}/lib"
 cp include/*.h "${PREFIX}/include"

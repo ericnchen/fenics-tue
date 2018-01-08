@@ -2,6 +2,8 @@
 #
 # Build all conda packages in the appropriate order.
 
+set -e
+
 bash conda_build tue
 
 bash conda_build mumps

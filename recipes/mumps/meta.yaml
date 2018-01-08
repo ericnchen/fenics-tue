@@ -34,8 +34,5 @@ requirements:
     - tue
 
 test:
-  source_files:
-    - examples
-
   commands:
     - conda inspect linkages mumps

@@ -16,7 +16,7 @@ requirements:
     - boost             1.65.1
     - boost-cpp         1.65.1
     - cmake
-    - doxygen
+    - doxygen           1.8.13   1
     - eigen             3.3.3    0
     - fenics-components 2017.1.0
     - hdf5              1.8.19   tue_0

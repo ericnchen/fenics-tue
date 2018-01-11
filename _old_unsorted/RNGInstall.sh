@@ -30,16 +30,7 @@ install_hypre () {
 }
 
 install_scotch () {
-    tar -C /tmp -xzf "${WORKDIR}/external_downloads/scotch_6.0.4.tar.gz"
-    cp "${WORKDIR}/external_downloads/Makefile.inc.scotch" /tmp/scotch_6.0.4/src/Makefile.inc
-    cd /tmp/scotch_6.0.4/src
     make scotch ptscotch esmumps ptesmumps
-    cd /tmp/scotch_6.0.4
-    mkdir -p "${INSTALLDIR}/scotch/bin" "${INSTALLDIR}/scotch/include" "${INSTALLDIR}/scotch/lib"
-    cp bin/* "${INSTALLDIR}/scotch/bin/"
-    cp include/* "${INSTALLDIR}/scotch/include/"
-    cp lib/* "${INSTALLDIR}/scotch/lib/"
-    rm -rf /tmp/scotch_6.0.4
 }
 
 install_petsc () {

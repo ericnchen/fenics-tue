@@ -6,8 +6,8 @@ PREFIX="${HOME}/fenics-tue"
 CONDA_DIR="${PREFIX}/conda"
 
 FN="/tmp/miniconda${RANDOM}${RANDOM}.sh"
-URL='https://repo.continuum.io/miniconda/Miniconda3-4.3.30-Linux-x86_64.sh'
-MD5='0b80a152332a4ce5250f3c09589c7a81'
+URL='https://repo.continuum.io/miniconda/Miniconda3-4.3.31-Linux-x86_64.sh'
+MD5='7fe70b214bee1143e3e3f0467b71453c'
 
 bash check_internet.sh
 if [ "${?}" != "0" ]; then
@@ -29,5 +29,6 @@ fi
 # Install conda.
 bash "${FN}" -b -p "${CONDA_DIR}" && "${CONDA_DIR}/bin/conda" install -y conda-build && rm "${FN}"
 
-# Link the default ${CONDA_DIR}/bin directory to ${PREFIX}/bin.
+# Link the default ${CONDA_DIR}/{bin,envs} directories to ${PREFIX}/{bin,envs}.
 ln -s "${CONDA_DIR}/bin/" "${PREFIX}/bin"
+ln -s "${CONDA_DIR}/envs/" "${PREFIX}/envs"

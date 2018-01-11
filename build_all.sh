@@ -6,11 +6,11 @@ set -e
 
 #bash conda_build tue
 
-# SCOTCH and PT-SCOTCH have no dependencies.
+# These packages have no dependencies to other self-compiled packages.
+conda build recipes/blacs
 conda build recipes/scotch
-
-# OpenBLAS has no dependencies.
 conda build recipes/openblas
+# These packages have no dependencies to other self-compiled packages.
 
 #bash conda_build mumps
 #bash conda_build petsc

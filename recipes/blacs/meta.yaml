@@ -1,0 +1,22 @@
+package:
+  name: blacs
+  version: "1.1"
+
+source:
+  - url: http://www.netlib.org/blacs/mpiblacs.tgz
+    sha256: 88dd7265d412022948debb7a2737226cd53a3bf73b0b62fc55ceb3ccc8a598f7
+  - url: http://www.netlib.org/blacs/mpiblacs-patch03.tgz
+    sha256: 92dfba8a462a2f23102000a10532c00a9a5203b79ccad5a87f44ce83eb6bc7ed
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - gcc_linux-64
+    - gfortran_linux-64
+    - mpich2
+
+test:
+  commands:
+    - conda inspect linkages blacs

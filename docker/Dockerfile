@@ -15,6 +15,7 @@ RUN curl -so /tmp/Miniconda3-Linux-x86_64.sh https://repo.continuum.io/miniconda
     rm /tmp/*
 
 # This part creates a user, builder, which will be the builder account, and switch to it.
-RUN useradd -ms /bin/bash builder
+RUN useradd -m -s /bin/bash -u 1000 builder
 USER builder
 WORKDIR /home/builder
+ENV PATH="/anaconda/bin:${PATH}"

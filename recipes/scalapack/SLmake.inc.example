@@ -1,0 +1,66 @@
+# This file was originally copied from the 2.0.2 source archive, from
+# SLmake.inc.example and modified, keeping as much of the original structure in
+# tact.
+
+############################################################################
+#
+#  Program:         ScaLAPACK
+#
+#  Module:          SLmake.inc
+#
+#  Purpose:         Top-level Definitions
+#
+#  Creation date:   February 15, 2000
+#
+#  Modified:        October 13, 2011
+#
+#  Send bug reports, comments or suggestions to scalapack@cs.utk.edu
+#
+############################################################################
+#
+#  C preprocessor definitions:  set CDEFS to one of the following:
+#
+#     -DNoChange (fortran subprogram names are lower case without any suffix)
+#     -DUpCase   (fortran subprogram names are upper case without any suffix)
+#     -DAdd_     (fortran subprogram names are lower case with "_" appended)
+
+CDEFS         = -DAdd_
+
+#
+#  The fortran and C compilers, loaders, and their flags
+#
+
+CONDA_FC            := $(FC)
+CONDA_CC            := $(CC)
+FC            = mpif90
+CC            = mpicc
+NOOPT         = -O0
+FCFLAGS       = -O3 -march=haswell -mtune=haswell -fc=$(CONDA_FC)
+CCFLAGS       = -O3 -march=haswell -mtune=haswell -cc=$(CONDA_CC)
+FCLOADER      = $(FC)
+CCLOADER      = $(CC)
+FCLOADFLAGS   = $(FCFLAGS)
+CCLOADFLAGS   = $(CCFLAGS)
+
+#
+#  The archiver and the flag(s) to use when building archive (library)
+#  Also the ranlib routine.  If your system has no ranlib, set RANLIB = echo
+#
+
+ARCH          := $(AR)
+ARCHFLAGS     = cr
+RANLIB        := $(RANLIB)
+
+#
+#  The name of the ScaLAPACK library to be created
+#
+
+SCALAPACKLIB  = libscalapack.a
+
+#
+#  BLAS, LAPACK (and possibly other) libraries needed for linking test programs
+#
+
+BLASLIB       = -lopenblas -lpthread
+LAPACKLIB     =
+LIBS          = $(LAPACKLIB) $(BLASLIB)

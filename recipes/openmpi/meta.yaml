@@ -1,0 +1,29 @@
+package:
+  name: openmpi
+  version: 2.1.2
+
+source:
+  url: https://www.open-mpi.org/software/ompi/v2.1/downloads/openmpi-2.1.2.tar.bz2
+  sha1: 4d43bb407eb8b9da099a555e8dc083352c6a1d02
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+    - perl
+
+test:
+  requires:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+
+  source_files:
+    - examples
+
+  commands:
+    - conda inspect linkages openmpi

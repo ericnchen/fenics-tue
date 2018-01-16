@@ -20,10 +20,15 @@ RUN curl -so /tmp/Miniconda3-Linux-x86_64.sh https://repo.continuum.io/miniconda
 
 # Install additional tools via yum.
 RUN yum update && \
-    yum install -y openssh-clients && \
+    yum install -y \
+        perl \
+        openssh-clients && \
     yum clean -y all && \
     rm -rf /tmp/*
 
+COPY conda-build         /home/builder/conda-build
+COPY get-anaconda-client /home/builder/get-anaconda-client
+RUN chown -R builder /home/builder/conda-build /home/builder/get-anaconda-client
+
 USER builder
 WORKDIR /home/builder
-ENV PATH="/anaconda/bin:${PATH}"

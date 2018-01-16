@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#
+# Convenience function for conda build command.
+
+/anaconda/bin/conda build -c tue --no-copy-test-source-files "${@}" /recipe

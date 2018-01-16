@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#
+# Convenience function to download the Anaconda client tool.
+
+/anaconda/bin/conda install -y anaconda-client

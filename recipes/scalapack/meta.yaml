@@ -1,5 +1,5 @@
 package:
-  name: scalapck
+  name: scalapack
   version: 2.0.2
 
 source:
@@ -11,13 +11,23 @@ build:
 
 requirements:
   build:
-    - gcc_linux-64
-    - gfortran_linux-64
-    - mpich2
+    - {{ compiler('c') }}
+    - {{ compiler('fortran') }}
+    - openmpi
 
-#  run:
-#    - gcc_linux-64
+  run:
+    - {{ compiler('c') }}
+    - {{ compiler('fortran') }}
+    - openmpi
 
 test:
-  commands:
-    - conda inspect linkages scalapack
+  requires:
+    - blacs
+    - openblas
+
+  source_files:
+    - PBLAS
+    - REDIST
+    - TESTING
+    - Makefile
+    - TOOLS/LAPACK/icopy.f

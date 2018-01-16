@@ -1,7 +1,3 @@
-# This file was originally copied from the 2.0.2 source archive, from
-# SLmake.inc.example and modified, keeping as much of the original structure in
-# tact.
-
 ############################################################################
 #
 #  Program:         ScaLAPACK
@@ -30,17 +26,15 @@ CDEFS         = -DAdd_
 #  The fortran and C compilers, loaders, and their flags
 #
 
-CONDA_FC            := $(FC)
-CONDA_CC            := $(CC)
-FC            = mpif90
+FC            = mpif77
 CC            = mpicc
 NOOPT         = -O0
-FCFLAGS       = -O3 -march=haswell -mtune=haswell -fc=$(CONDA_FC)
-CCFLAGS       = -O3 -march=haswell -mtune=haswell -cc=$(CONDA_CC)
+FCFLAGS       = -O3
+CCFLAGS       = -O3
 FCLOADER      = $(FC)
 CCLOADER      = $(CC)
-FCLOADFLAGS   = $(FCFLAGS)
-CCLOADFLAGS   = $(CCFLAGS)
+FCLOADFLAGS   =
+CCLOADFLAGS   =
 
 #
 #  The archiver and the flag(s) to use when building archive (library)
@@ -61,6 +55,7 @@ SCALAPACKLIB  = libscalapack.a
 #  BLAS, LAPACK (and possibly other) libraries needed for linking test programs
 #
 
-BLASLIB       = -lopenblas -lpthread
-LAPACKLIB     =
-LIBS          = $(LAPACKLIB) $(BLASLIB)
+BLASLIB       = -lblas
+LAPACKLIB     = -llapack
+BLACSLIB      = -lblacs_F77init -lblacs -lblacs_F77init
+LIBS          = $(BLACSLIB) $(LAPACKLIB) $(BLASLIB)

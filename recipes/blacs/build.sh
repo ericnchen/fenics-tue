@@ -12,11 +12,8 @@ unset \
   DEBUG_CFLAGS \
   FFLAGS
 
-ln -s "${GCC}" "${CONDA_PREFIX}/bin/gcc"
-ln -s "${GXX}" "${CONDA_PREFIX}/bin/g++"
-ln -s "${GFORTRAN}" "${CONDA_PREFIX}/bin/gfortran"
+cp "${RECIPE_DIR}/SRC_MPI_Makefile" SRC/MPI/Makefile
 
-cp "${RECIPE_DIR}/Makefile.MPI" SRC/MPI/Makefile
 mkdir "${PREFIX}/lib"
 
 make mpi

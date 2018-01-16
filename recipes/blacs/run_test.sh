@@ -12,20 +12,17 @@ unset \
   DEBUG_CFLAGS \
   FFLAGS
 
-ln -s "${GCC}" "${CONDA_PREFIX}/bin/gcc"
-ln -s "${GXX}" "${CONDA_PREFIX}/bin/g++"
-ln -s "${GFORTRAN}" "${CONDA_PREFIX}/bin/gfortran"
-
-cp "${RECIPE_DIR}/blacstest.f" TESTING/blacstest.f
-cp "${RECIPE_DIR}/Makefile.TESTING" TESTING/Makefile
+cp "${RECIPE_DIR}/TESTING_Makefile"    TESTING/Makefile
+cp "${RECIPE_DIR}/TESTING_blacstest.f" TESTING/blacstest.f
 
 make tester
 
-cd "${PREFIX}"
-ln -s "${RECIPE_DIR}/bsbr.dat" bsbr.dat
-ln -s "${RECIPE_DIR}/bt.dat" bt.dat
-ln -s "${RECIPE_DIR}/comb.dat" comb.dat
-ln -s "${RECIPE_DIR}/sdrv.dat" sdrv.dat
+ln -s "${SRC_DIR}/TESTING/bt.dat"   "${PREFIX}/bt.dat"
+ln -s "${SRC_DIR}/TESTING/bsbr.dat" "${PREFIX}/bsbr.dat"
+ln -s "${SRC_DIR}/TESTING/comb.dat" "${PREFIX}/comb.dat"
+ln -s "${SRC_DIR}/TESTING/sdrv.dat" "${PREFIX}/sdrv.dat"
 
-mpirun -np "${CPU_COUNT}" xFbtest
+cd "${PREFIX}"
+
 mpirun -np "${CPU_COUNT}" xCbtest
+mpirun -np "${CPU_COUNT}" xFbtest

@@ -9,18 +9,18 @@ source:
     sha256: 92dfba8a462a2f23102000a10532c00a9a5203b79ccad5a87f44ce83eb6bc7ed
 
 build:
-  number: 4
+  number: 5
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('fortran') }}
-    - openmpi
+    - openmpi 2.1.2 h1c2f66e_4
 
   run:
     - {{ compiler('c') }}
     - {{ compiler('fortran') }}
-    - openmpi
+    - openmpi 2.1.2 h1c2f66e_4
 
 test:
   source_files:

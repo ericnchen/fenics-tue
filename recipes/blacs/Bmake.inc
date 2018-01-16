@@ -1,7 +1,3 @@
-# This file was originally copied from the 1.1 source archive, from
-# Bmake.MPI-LINUX and modified, keeping as much of the original structure in
-# tact.
-
 #=============================================================================
 #====================== SECTION 1: PATHS AND LIBRARIES =======================
 #=============================================================================
@@ -17,7 +13,7 @@
 #  -----------------------------
 #  The top level BLACS directory
 #  -----------------------------
-   BTOPdir = $(PREFIX)
+   BTOPdir = .
 
 #  ---------------------------------------------------------------------------
 #  The communication library your BLACS have been written for.
@@ -42,19 +38,19 @@
 #  Name and location of the BLACS library.  See section 2 for 
 #  details on BLACS debug level (BLACSDBGLVL).
 #  ----------------------------------------------------------
-   BLACSdir    = $(BTOPdir)/lib
+   BLACSdir    = $(PREFIX)/lib
    BLACSDBGLVL = 0
-   BLACSFINIT  = $(BLACSdir)/blacsF77init_$(COMMLIB)-$(PLAT)-$(BLACSDBGLVL).a
-   BLACSCINIT  = $(BLACSdir)/blacsCinit_$(COMMLIB)-$(PLAT)-$(BLACSDBGLVL).a
-   BLACSLIB    = $(BLACSdir)/blacs_$(COMMLIB)-$(PLAT)-$(BLACSDBGLVL).a
+   BLACSFINIT  = $(BLACSdir)/libblacs_F77init.a
+   BLACSCINIT  = $(BLACSdir)/libblacs_Cinit.a
+   BLACSLIB    = $(BLACSdir)/libblacs.a
 
 #  -------------------------------------
 #  Name and location of the MPI library.
 #  -------------------------------------
-   MPIdir = $(PREFIX)
-   MPILIBdir = $(MPIdir)/lib
+   MPIdir = $(CONDA_PREFIX)
+   MPILIBdir =
    MPIINCdir = $(MPIdir)/include
-   MPILIB = $(MPILIBdir)/libmpich.a
+   MPILIB =
 
 #  -------------------------------------
 #  All libraries required by the tester.
@@ -64,14 +60,14 @@
 #  ----------------------------------------------------------------
 #  The directory to put the installation help routines' executables
 #  ----------------------------------------------------------------
-   INSTdir = $(BTOPdir)/bin
+   INSTdir = EXE
 
 #  ------------------------------------------------
 #  The name and location of the tester's executable
 #  ------------------------------------------------
-   TESTdir = $(BTOPdir)/bin
-   FTESTexe = $(TESTdir)/xFbtest_$(COMMLIB)-$(PLAT)-$(BLACSDBGLVL)
-   CTESTexe = $(TESTdir)/xCbtest_$(COMMLIB)-$(PLAT)-$(BLACSDBGLVL)
+   TESTdir = $(PREFIX)
+   FTESTexe = $(TESTdir)/xFbtest
+   CTESTexe = $(TESTdir)/xCbtest
 #=============================================================================
 #=============================== End SECTION 1 ===============================
 #=============================================================================
@@ -90,7 +86,7 @@
 #  The directory to find the required communication library include files, 
 #  if they are required by your system.
 #  -----------------------------------------------------------------------
-   SYSINC = -I$(MPIINCdir)
+   SYSINC =
 
 #  ---------------------------------------------------------------------------
 #  The Fortran 77 to C interface to be used.  If you are unsure of the correct
@@ -139,14 +135,14 @@
 #  define -DPOINTER_64_BITS=1.)  For help on setting TRANSCOMM, you can
 #  run BLACS/INSTALL/xtc_CsameF77 and BLACS/INSTALL/xtc_UseMpich as
 #  explained in BLACS/INSTALL/README.
-#  TRANSCOMM = -DUseMpich -DPOINTER_64_BITS=1
+#  TRANSCOMM = -DUseMpich
 #
 #  If you know that your MPI uses the same handles for fortran and C
 #  communicators, you can replace the empty macro definition below with
 #  the macro definition on the following line.
 #  TRANSCOMM = -DCSameF77
 #  -----------------------------------------------------------------------
-   TRANSCOMM = -DCSameF77
+   TRANSCOMM = -DUseMpi2
 
 #  --------------------------------------------------------------------------
 #  You may choose to have the BLACS internally call either the C or Fortran77
@@ -199,15 +195,13 @@
 #  optimization.  This is the F77NO_OPTFLAG.  The usage of the remaining
 #  macros should be obvious from the names.
 #=============================================================================
-   CONDA_CC       := $(CC)
-   CONDA_FC       := $(FC)
-   F77            = mpif77 -fc=$(CONDA_FC)
-   F77NO_OPTFLAGS =
-   F77FLAGS       = -O3 -march=haswell -mtune=haswell
+   F77            = mpif77
+   F77NO_OPTFLAGS = -O0
+   F77FLAGS       = -O3
    F77LOADER      = $(F77)
    F77LOADFLAGS   =
-   CC             = mpicc -cc=$(CONDA_CC)
-   CCFLAGS        = -O3 -march=haswell -mtune=haswell
+   CC             = mpicc
+   CCFLAGS        = -O3
    CCLOADER       = $(CC)
    CCLOADFLAGS    =
 

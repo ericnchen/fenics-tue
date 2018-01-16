@@ -16,7 +16,16 @@ ln -s "${GCC}" "${CONDA_PREFIX}/bin/gcc"
 ln -s "${GXX}" "${CONDA_PREFIX}/bin/g++"
 ln -s "${GFORTRAN}" "${CONDA_PREFIX}/bin/gfortran"
 
-cp "${RECIPE_DIR}/Makefile.MPI" SRC/MPI/Makefile
-mkdir "${PREFIX}/lib"
+cp "${RECIPE_DIR}/blacstest.f" TESTING/blacstest.f
+cp "${RECIPE_DIR}/Makefile.TESTING" TESTING/Makefile
 
-make mpi
+make tester
+
+cd "${PREFIX}"
+ln -s "${RECIPE_DIR}/bsbr.dat" bsbr.dat
+ln -s "${RECIPE_DIR}/bt.dat" bt.dat
+ln -s "${RECIPE_DIR}/comb.dat" comb.dat
+ln -s "${RECIPE_DIR}/sdrv.dat" sdrv.dat
+
+mpirun -np "${CPU_COUNT}" xFbtest
+mpirun -np "${CPU_COUNT}" xCbtest

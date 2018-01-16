@@ -12,12 +12,11 @@ unset \
   DEBUG_CFLAGS \
   FFLAGS
 
-ln -s "${GCC}" "${CONDA_PREFIX}/bin/gcc"
-ln -s "${GXX}" "${CONDA_PREFIX}/bin/g++"
-ln -s "${GFORTRAN}" "${CONDA_PREFIX}/bin/gfortran"
+export FC="$(echo "${GFORTRAN}" | xargs -n 1 basename)"
+export CC="$(echo "${GCC}" | xargs -n 1 basename)"
+export CXX="$(echo "${GXX}" | xargs -n 1 basename)"
 
 ./configure \
-  CC=gcc CXX=g++ FC=gfortran \
   --disable-static \
   --disable-dependency-tracking \
   --enable-mpi-fortran \

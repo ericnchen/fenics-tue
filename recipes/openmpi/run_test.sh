@@ -12,18 +12,18 @@ unset \
   DEBUG_CFLAGS \
   FFLAGS
 
-ln -s "${GCC}" "${CONDA_PREFIX}/bin/gcc"
-ln -s "${GXX}" "${CONDA_PREFIX}/bin/g++"
-ln -s "${GFORTRAN}" "${CONDA_PREFIX}/bin/gfortran"
-
 cd examples
-make mpi
 
-mpirun -np 4 hello_cxx
-mpirun -np 4 hello_mpifh
-mpirun -np 4 hello_usempi
-mpirun -np 4 hello_usempif08
-mpirun -np 4 ring_cxx
-mpirun -np 4 ring_mpifh
-mpirun -np 4 ring_usempi
-mpirun -np 4 ring_usempif08
+make hello_c ring_c mpi
+
+mpirun -np "${CPU_COUNT}" hello_c
+mpirun -np "${CPU_COUNT}" hello_cxx
+mpirun -np "${CPU_COUNT}" hello_mpifh
+mpirun -np "${CPU_COUNT}" hello_usempi
+mpirun -np "${CPU_COUNT}" hello_usempif08
+
+mpirun -np "${CPU_COUNT}" ring_c
+mpirun -np "${CPU_COUNT}" ring_cxx
+mpirun -np "${CPU_COUNT}" ring_mpifh
+mpirun -np "${CPU_COUNT}" ring_usempi
+mpirun -np "${CPU_COUNT}" ring_usempif08

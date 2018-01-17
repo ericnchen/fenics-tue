@@ -21,6 +21,10 @@ export CPATH="${CONDA_PREFIX}/include:${CPATH}"
 make -j "${CPU_COUNT}" scotch
 make -j "${CPU_COUNT}" ptscotch
 
+# These next two can not be built with multiple workers.
+make esmumps
+make ptesmumps
+
 make prefix="${PREFIX}" install
 
 rm -rf "${PREFIX}/share"

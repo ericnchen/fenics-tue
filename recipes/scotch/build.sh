@@ -27,4 +27,11 @@ make ptesmumps
 
 make prefix="${PREFIX}" install
 
+# Copy the additional esmumps outputs that the above didn't  copy.
+cp ../include/esmumps.h  "${PREFIX}/include/esmumps.h"
+cp ../include/metis.h    "${PREFIX}/include/metis.h"
+cp ../include/parmetis.h "${PREFIX}/include/parmetis.h"
+cp ../lib/libesmumps.a   "${PREFIX}/lib/libesmumps.a"
+cp ../lib/libptesmumps.a "${PREFIX}/lib/libptesmumps.a"
+
 rm -rf "${PREFIX}/share"

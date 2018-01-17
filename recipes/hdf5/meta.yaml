@@ -1,34 +1,23 @@
 package:
   name: hdf5
-  version: 1.8.19
+  version: 1.8.20
 
 source:
-  url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.19/src/hdf5-1.8.19.tar.gz
-  sha256: a4335849f19fae88c264fd0df046bc321a78c536b2548fc508627a790564dc38
-  patches:
-    - test_Makefile.in.patch
+  url: https://support.hdfgroup.org/ftp/HDF5/current18/src/hdf5-1.8.20.tar.bz2
+  md5: 23078d57975903e9536d1e7b299cc39c
 
 build:
   number: 0
-  features:
-    - tue
 
 requirements:
   build:
-    - gcc         4.8.5  7
-    - libgcc      4.8.5  2
-    - mpich       3.2    5
+    - {{ openmpi }}
     - zlib
 
   run:
-    - gcc         4.8.5  7
-    - libgcc      4.8.5  2
-    - mpich       3.2    5
-    - tue
+    - {{ openmpi }}
     - zlib
 
 test:
   commands:
-    - h5perf
-    - h5perf_serial
     - conda inspect linkages hdf5

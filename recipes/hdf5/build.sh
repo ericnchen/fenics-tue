@@ -1,28 +1,42 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e
+
+# Unset the default compile/link flags that the conda compiler tools set.
+unset \
+  DEBUG_FORTRANFLAGS \
+  CXXFLAGS \
+  DEBUG_CXXFLAGS \
+  DEBUG_FFLAGS \
+  FORTRANFLAGS \
+  CFLAGS \
+  DEBUG_CFLAGS \
+  FFLAGS
 
 export LIBRARY_PATH="${PREFIX}/lib"
 
-./configure                                            \
-  CC="${PREFIX}/bin/mpicc"                             \
-  CFLAGS="-fPIC"                                       \
-  CXX="${PREFIX}/bin/mpicxx"                           \
-  CXXFLAGS="-fPIC"                                     \
-  --prefix="${PREFIX}"                                 \
-  --disable-debug                                      \
-  --enable-production                                  \
-  --enable-cxx                                         \
-  --disable-fortran                                    \
-  --disable-fortran2003                                \
-  --disable-hl                                         \
-  --enable-parallel                                    \
-  --disable-static                                     \
-  --enable-shared                                      \
-  --enable-threadsafe                                  \
-  --enable-unsupported                                 \
-  --with-pthread=yes                                   \
-  --with-default-plugindir="${PREFIX}/lib/hdf5/plugin" \
-  --with-zlib="${PREFIX}"
+./configure --prefix="${PREFIX}"    \
+            CC=mpicc CFLAGS="-O3"   \
+            --disable-hl            \
+            --disable-cxx           \
+            --disable-fortran       \
+            --disable-debug         \
+            --enable-linux-lfs      \
+            --enable-threadsafe     \
+            --enable-production     \
+            --enable-unsupported    \
+            --enable-parallel       \
+            --with-pthread=yes      \
+            --with-zlib="${PREFIX}" \
+            --with-default-plugindir="${PREFIX}/lib/hdf5/plugin"
 
-make -j 4 install
+make -j "${CPU_COUNT}"
+
+# Make the testcases run faster.
+export HDF5TestExpress=2
+cp "${RECIPE_DIR}/testpar_Makefile.in" testpar/Makefile.in
+make check
+
+make install
+make check-install
 
 rm -rf "${PREFIX}/share/hdf5_examples"

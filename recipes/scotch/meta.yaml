@@ -11,24 +11,20 @@ build:
 
 requirements:
   build:
-    - gcc_linux-64
-    - mpich2
+    - {{ compiler('c') }}
+    - openmpi 2.1.2 h1c2f66e_4
+    - bison
     - zlib
 
   run:
-    - gcc_linux-64
-    - mpich2
+    - {{ compiler('c') }}
+    - openmpi 2.1.2 h1c2f66e_4
     - zlib
 
 test:
   source_files:
-    - src
+    - src/check
+    - src/libscotch/*.h
 
   commands:
-    - dggath -V
-    - dgmap  -V
-    - dgord  -V
-    - dgpart -V
-    - dgscat -V
-    - dgtst  -V
     - conda inspect linkages scotch

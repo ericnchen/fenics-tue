@@ -12,14 +12,10 @@ unset \
   DEBUG_CFLAGS \
   FFLAGS
 
-ln -s "${GCC}" "${CONDA_PREFIX}/bin/gcc"
-ln -s "${GXX}" "${CONDA_PREFIX}/bin/g++"
-ln -s "${GFORTRAN}" "${CONDA_PREFIX}/bin/gfortran"
-
-cp "${RECIPE_DIR}/SLmake.inc" SLmake.inc
-cp "${RECIPE_DIR}/Makefile.TOOLS" TOOLS/Makefile
+cp "${RECIPE_DIR}/SLmake.inc"     SLmake.inc
+cp "${RECIPE_DIR}/TOOLS_Makefile" TOOLS/Makefile
 
 make toolslib pblaslib redistlib scalapacklib
 
 mkdir "${PREFIX}/lib"
-cp libscalapack.a "${PREFIX}/lib/libscalapack.a"
+mv libscalapack.a "${PREFIX}/lib/libscalapack.a"

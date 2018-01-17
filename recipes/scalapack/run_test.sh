@@ -12,18 +12,14 @@ unset \
   DEBUG_CFLAGS \
   FFLAGS
 
-ln -s "${GCC}" "${CONDA_PREFIX}/bin/gcc"
-ln -s "${GXX}" "${CONDA_PREFIX}/bin/g++"
-ln -s "${GFORTRAN}" "${CONDA_PREFIX}/bin/gfortran"
-
 ln -s "${CONDA_PREFIX}/lib/libscalapack.a" libscalapack.a
 
 # These are additional select routines that the testcases need.
 compile_testing_tools() {
   mkdir TESTING_TOOLS
 
-  cp TOOLS/LAPACK/icopy.f TESTING_TOOLS/icopy.f
-  cp "${RECIPE_DIR}/Makefile.TESTING_TOOLS" TESTING_TOOLS/Makefile
+  cp TOOLS/LAPACK/icopy.f                   TESTING_TOOLS/icopy.f
+  cp "${RECIPE_DIR}/TESTING_TOOLS.Makefile" TESTING_TOOLS/Makefile
 
   (cd TESTING_TOOLS && make all)
 
@@ -162,6 +158,8 @@ test_scalapack() {
   (cd TESTING && mpirun -np "${CPU_COUNT}" xznep)
   (cd TESTING && mpirun -np "${CPU_COUNT}" xcevc)
   (cd TESTING && mpirun -np "${CPU_COUNT}" xzevc)
+
+  # These tests take too long to run and are skipped.
 #  (cd TESTING && mpirun -np "${CPU_COUNT}" xssyevr)
 #  (cd TESTING && mpirun -np "${CPU_COUNT}" xdsyevr)
 #  (cd TESTING && mpirun -np "${CPU_COUNT}" xcheevr)

@@ -6,11 +6,11 @@
 # metis (parmetis), scotch (ptscotch), mpich, gfortran
 
 # Begin orderings
-LSCOTCH = -L$(PREFIX)/lib -lptesmumps -lptscotch -lptscotcherr -lscotcherr -lscotch
+LSCOTCH = -L$(PREFIX)/lib -lptesmumps -lptscotch -lscotch -lscotcherr
 ISCOTCH = -I$(PREFIX)/include
 
-LPORDDIR = $(topdir)/PORD/lib/
-IPORD    = -I$(topdir)/PORD/include/
+LPORDDIR = $(topdir)/PORD/lib
+IPORD    = -I$(topdir)/PORD/include
 LPORD    = -L$(LPORDDIR) -lpord
 
 # The following variables will be used in the compilation process.
@@ -26,18 +26,21 @@ IORDERINGSC = $(ISCOTCH) $(IPORD)
 
 ################################################################################
 
-PLAT   =
-LIBEXT = .a
-OUTC   = -o
-OUTF   = -o
-RM     = /bin/rm -f
-CC     = mpicc
-FC     = mpifort
-FL     = mpifort
-AR     = ar vr 
-RANLIB = ranlib
+PLAT    =
+LIBEXT  = .a
+OUTC    = -o
+OUTF    = -o
+RM      = /bin/rm -f
+CC      = mpicc
+FC      = mpifort
+FL      = mpifort
+RANLIB := $(RANLIB)
 
-SCALAP = -lscalapack
+# AR is defined in build.sh because defining it here is "difficult."
+#AR      = ar vr
+
+# SCALAP needs to have, at least the BLACS libs, in this order:
+SCALAP = -lscalapack -lblacs -lblacs_F77init -lblacs
 
 INCPAR = -I${PREFIX}/include
 LIBPAR = $(SCALAP) -lmpi
@@ -49,9 +52,9 @@ LIBOTHERS = -lpthread
 CDEFS   = -DAdd_
 
 # Begin Optimized options
-OPTF = -O3 -fPIC -DALLOW_NON_INIT
-OPTC = -O3 -fPIC -DALLOW_NON_INIT
-OPTL = -O3 -fPIC -DALLOW_NON_INIT
+OPTF = -O3 -DALLOW_NON_INIT
+OPTC = -O3 -DALLOW_NON_INIT
+OPTL = -O3 -DALLOW_NON_INIT
 #End Optimized options
 
 INCS = $(INCPAR)

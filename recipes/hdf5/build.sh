@@ -16,7 +16,6 @@ export LIBRARY_PATH="${PREFIX}/lib"
 
 ./configure --prefix="${PREFIX}"    \
             CC=mpicc CFLAGS="-O3"   \
-            --disable-hl            \
             --disable-cxx           \
             --disable-fortran       \
             --disable-debug         \

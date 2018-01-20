@@ -12,7 +12,9 @@ set -e
 
 # ---
 
-# openmpi -> [blacs, scalapack, scotch, hypre] -> petsc
+# openmpi -> XXX -> suitesparse
+
+# openmpi -> [blacs, scalapack, scotch, mumps, hdf5, hypre, suitesparse] -> petsc
 
 #bash conda_build fenics-components
 

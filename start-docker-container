@@ -7,4 +7,5 @@ if [[ -z "${1}" ]]; then
   exit 1
 fi
 
+cp "$(pwd)/recipes/conda_build_config.yaml" "$(pwd)/${1}/conda_build_config.yaml"
 docker run -it --rm -v "$(pwd)/${1}:/recipe" fenics-tue-builder

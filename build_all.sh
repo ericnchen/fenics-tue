@@ -4,18 +4,15 @@
 
 set -e
 
-#bash conda_build tue
+# openmpi -> blacs -> scalapack
+# openmpi -> scotch
+# openmpi -> [blacs, scalapack, scotch] -> mumps
+# openmpi -> hdf5
+# openmpi -> hypre
 
-# These packages have no dependencies to other self-compiled packages.
-conda build recipes/blacs
-conda build recipes/scotch
-conda build recipes/openblas
-# These packages have no dependencies to other self-compiled packages.
+# ---
 
-#bash conda_build mumps
-#bash conda_build petsc
-
-#bash conda_build hdf5
+# openmpi -> [blacs, scalapack, scotch, hypre] -> petsc
 
 #bash conda_build fenics-components
 
@@ -23,5 +20,3 @@ conda build recipes/openblas
 #bash conda_build mshr
 
 #bash conda_build fenics
-
-conda build purge

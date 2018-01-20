@@ -1,0 +1,18 @@
+package:
+  name: suitesparse
+  version: 4.5.6
+
+source:
+  url: http://faculty.cse.tamu.edu/davis/SuiteSparse/SuiteSparse-4.5.6.tar.gz
+  sha256: de5fb496bdc029e55955e05d918a1862a177805fbbd5b957e8b5ce6632f6c77e
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ scotch }}
+
+test:
+  commands:
+    - conda inspect linkages suitesparse

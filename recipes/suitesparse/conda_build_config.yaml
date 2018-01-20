@@ -1,0 +1,7 @@
+blacs:     blacs     1.1    h9ac9557_5
+hdf5:      hdf5      1.8.20 h7a09eb8_1
+hypre:     hypre     2.11.2 h4b09c50_0
+mumps:     mumps     5.1.2  hdc60bfa_0
+openmpi:   openmpi   2.1.2  h1c2f66e_4
+scalapack: scalapack 2.0.2  h9ac9557_1
+scotch:    scotch    6.0.4  h1b899c7_2

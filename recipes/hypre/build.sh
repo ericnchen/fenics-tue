@@ -21,9 +21,9 @@ cd src
   CC=mpicc                       \
   CXX=mpicxx                     \
   FC=mpifort                     \
-  CFLAGS="-O3"                   \
-  CXXFLAGS="-O3"                 \
-  FFLAGS="-O3"                   \
+  FFLAGS="-O3 -fPIC"             \
+  CFLAGS="-O3 -fPIC"             \
+  CXXFLAGS="-O3 -fPIC"           \
   AR="${AR} -rcu"                \
   --with-blas-lib="${PREFIX}/lib/libopenblas.so" \
   --with-lapack-lib="${PREFIX}/lib/liblapack.so" \

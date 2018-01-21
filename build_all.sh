@@ -6,13 +6,13 @@ set -e
 
 # openmpi -> blacs
 # openmpi -> hdf5
+# openmpi -> hypre
 # openmpi -> scotch
 
 # openmpi -> blacs -> scalapack
 
 # ---
 
-# openmpi -> hypre
 # openmpi -> [blacs, scalapack, scotch] -> mumps
 
 # ---

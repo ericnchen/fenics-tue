@@ -1,32 +1,24 @@
 #!/usr/bin/env bash
 set -e
 
-# Unset the default compile/link flags that the conda compiler tools set.
-unset \
-  DEBUG_FORTRANFLAGS \
-  CXXFLAGS \
-  DEBUG_CXXFLAGS \
-  DEBUG_FFLAGS \
-  FORTRANFLAGS \
-  CFLAGS \
-  DEBUG_CFLAGS \
-  FFLAGS
+source "${RECIPE_DIR}/fix-environment.sh"
 
 cp "${RECIPE_DIR}/Makefile" src/Makefile
 
 cd src
 
-./configure --prefix="${PREFIX}" \
-  CPPFLAGS="-I${PREFIX}/include" \
-  CC=mpicc                       \
-  CXX=mpicxx                     \
-  FC=mpifort                     \
-  FFLAGS="-O3 -fPIC"             \
-  CFLAGS="-O3 -fPIC"             \
-  CXXFLAGS="-O3 -fPIC"           \
-  AR="${AR} -rcu"                \
-  --with-blas-lib="${PREFIX}/lib/libopenblas.so" \
-  --with-lapack-lib="${PREFIX}/lib/liblapack.so" \
+./configure \
+  --prefix="${PREFIX}" \
+  CPPFLAGS="${CPPFLAGS}" \
+  FC=mpifort \
+  CC=mpicc \
+  CXX=mpicxx \
+  FFLAGS="${FFLAGS}" \
+  CFLAGS="${CFLAGS}" \
+  CXXFLAGS="${CXXFLAGS}" \
+  AR="${AR} -rcu" \
+  --with-blas-lib="-lopenblas" \
+  --with-lapack-lib="-llapack" \
   --with-fei=no
 
 make

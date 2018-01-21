@@ -28,13 +28,13 @@ CDEFS         = -DAdd_
 
 FC            = mpif77
 CC            = mpicc
-NOOPT         = -O0
-FCFLAGS       = -O3
-CCFLAGS       = -O3
+NOOPT         = -O0 -fPIC
+FCFLAGS       = $(FFLAGS)
+CCFLAGS       = $(CFLAGS)
 FCLOADER      = $(FC)
 CCLOADER      = $(CC)
-FCLOADFLAGS   =
-CCLOADFLAGS   =
+FCLOADFLAGS   = $(LDFLAGS)
+CCLOADFLAGS   = $(LDFLAGS)
 
 #
 #  The archiver and the flag(s) to use when building archive (library)

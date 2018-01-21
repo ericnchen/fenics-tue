@@ -47,7 +47,7 @@
 #  -------------------------------------
 #  Name and location of the MPI library.
 #  -------------------------------------
-   MPIdir = $(CONDA_PREFIX)
+   MPIdir = $(PREFIX)
    MPILIBdir =
    MPIINCdir = $(MPIdir)/include
    MPILIB =
@@ -196,14 +196,14 @@
 #  macros should be obvious from the names.
 #=============================================================================
    F77            = mpif77
-   F77NO_OPTFLAGS = -O0
-   F77FLAGS       = -O3
+   F77NO_OPTFLAGS = -O0 -fPIC
+   F77FLAGS       = $(FFLAGS)
    F77LOADER      = $(F77)
-   F77LOADFLAGS   =
+   F77LOADFLAGS   = $(LDFLAGS)
    CC             = mpicc
-   CCFLAGS        = -O3
+   CCFLAGS        = $(CFLAGS)
    CCLOADER       = $(CC)
-   CCLOADFLAGS    =
+   CCLOADFLAGS    = $(LDFLAGS)
 
 #  --------------------------------------------------------------------------
 #  The archiver and the flag(s) to use when building an archive (library).

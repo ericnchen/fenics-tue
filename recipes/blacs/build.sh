@@ -1,19 +1,29 @@
 #!/usr/bin/env bash
 set -e
 
-# Unset the default compile/link flags that the conda compiler tools set.
-unset \
-  DEBUG_FORTRANFLAGS \
-  CXXFLAGS \
-  DEBUG_CXXFLAGS \
-  DEBUG_FFLAGS \
-  FORTRANFLAGS \
-  CFLAGS \
-  DEBUG_CFLAGS \
-  FFLAGS
+source "${RECIPE_DIR}/fix-environment.sh"
 
 cp "${RECIPE_DIR}/SRC_MPI_Makefile" SRC/MPI/Makefile
+cp "${RECIPE_DIR}/TESTING_Makefile" TESTING/Makefile
+cp "${RECIPE_DIR}/TESTING_blacstest.f" TESTING/blacstest.f
 
-mkdir "${PREFIX}/lib"
+make -j "${CPU_COUNT}" mpi
 
-make mpi
+make tester
+
+ln -s "${SRC_DIR}/TESTING/bt.dat" .
+ln -s "${SRC_DIR}/TESTING/bsbr.dat" .
+ln -s "${SRC_DIR}/TESTING/comb.dat" .
+ln -s "${SRC_DIR}/TESTING/sdrv.dat" .
+
+export LD_LIBRARY_PATH="${PREFIX}/lib"
+mpirun -np "${CPU_COUNT}" "${PREFIX}/xCbtest"
+mpirun -np "${CPU_COUNT}" "${PREFIX}/xFbtest"
+
+rm "${PREFIX}/xCbtest"
+rm "${PREFIX}/xFbtest"
+
+unlink bt.dat
+unlink bsbr.dat
+unlink comb.dat
+unlink sdrv.dat

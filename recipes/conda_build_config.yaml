@@ -2,6 +2,6 @@ blacs:     blacs     1.1    h9ac9557_5
 hdf5:      hdf5      1.8.20 h7a09eb8_1
 hypre:     hypre     2.11.2 h7a09eb8_1
 mumps:     mumps     5.1.2  h86998ca_2
-openmpi:   openmpi   2.1.2  h1c2f66e_5
+openmpi:   openmpi   2.1.2  h1c2f66e_6
 scalapack: scalapack 2.0.2  h9ac9557_1
 scotch:    scotch    6.0.4  h69bcfd5_3

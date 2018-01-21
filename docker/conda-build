@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-#
-# Convenience function for conda build command.
-
-/anaconda/bin/conda build -c tue "${@}" /recipe

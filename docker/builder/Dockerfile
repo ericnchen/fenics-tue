@@ -1,13 +1,12 @@
-# Build:
-# docker build -t fenics-tue-builder .
-
-# Start from CentOS 6 because it's the closest base image to Rocks 6.1.1 (Sand Boa) found on RNG and Furnace.
+# This builder image is based off of CentOS 6 because that is the closest base
+# image to the Rocks (6.1.1 Sand Boa) distribution found on the RNG cluster.
 FROM centos:6
 
-# This part creates the builder account.
+# Create a user account called "builder" with the same UID as me.
+# TODO: This should be eventually generalized at some point.
 RUN useradd -m -s /bin/bash -u 1000 builder
 
-# This part downlaods, verifies, installs, and updates the Anaconda/Miniconda Python distribution and build system.
+# Install the Anaconda Python distribution and conda-build.
 RUN curl -so /tmp/Miniconda3-Linux-x86_64.sh https://repo.continuum.io/miniconda/Miniconda3-4.3.31-Linux-x86_64.sh && \
     echo '7fe70b214bee1143e3e3f0467b71453c  /tmp/Miniconda3-Linux-x86_64.sh' > /tmp/Miniconda3-Linux-x86_64.md5sum && \
     md5sum -c /tmp/Miniconda3-Linux-x86_64.md5sum && \
@@ -26,9 +25,10 @@ RUN yum update && \
     yum clean -y all && \
     rm -rf /tmp/*
 
-COPY conda-build         /home/builder/conda-build
-COPY get-anaconda-client /home/builder/get-anaconda-client
-RUN chown -R builder /home/builder/conda-build /home/builder/get-anaconda-client
+# Copy over relevant files/scripts and fix permissions.
+ADD conda-build.sh   /home/builder/conda-build.sh
+RUN chown -R builder /home/builder/conda-build.sh
 
+# Set the builder user and work directory.
 USER builder
 WORKDIR /home/builder

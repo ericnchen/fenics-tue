@@ -11,9 +11,7 @@ set -e
 
 # openmpi -> blacs -> scalapack
 
-# ---
-
-# openmpi -> [blacs, scalapack, scotch] -> mumps
+# openmpi -> [blacs, blacs, scotch, scalapack] -> mumps
 
 # ---
 

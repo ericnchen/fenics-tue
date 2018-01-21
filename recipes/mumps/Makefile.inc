@@ -52,8 +52,8 @@ LIBOTHERS = -lpthread
 CDEFS   = -DAdd_
 
 # Begin Optimized options
-OPTF = -O3 -fPIC -DALLOW_NON_INIT
-OPTC = -O3 -fPIC -DALLOW_NON_INIT
+OPTF = $(FFLAGS) -DALLOW_NON_INIT
+OPTC = $(CFLAGS) -DALLOW_NON_INIT
 OPTL = -O3 -fPIC -DALLOW_NON_INIT
 #End Optimized options
 

@@ -1,32 +1,25 @@
 #!/usr/bin/env bash
 set -e
 
-# Unset the default compile/link flags that the conda compiler tools set.
-unset \
-  DEBUG_FORTRANFLAGS \
-  CXXFLAGS \
-  DEBUG_CXXFLAGS \
-  DEBUG_FFLAGS \
-  FORTRANFLAGS \
-  CFLAGS \
-  DEBUG_CFLAGS \
-  FFLAGS
+source "${RECIPE_DIR}/fix-environment.sh"
 
-export LIBRARY_PATH="${PREFIX}/lib"
+#export LIBRARY_PATH="${PREFIX}/lib"
 
-./configure --prefix="${PREFIX}"    \
-            CC=mpicc CFLAGS="-O3"   \
-            --disable-cxx           \
-            --disable-fortran       \
-            --disable-debug         \
-            --enable-linux-lfs      \
-            --enable-threadsafe     \
-            --enable-production     \
-            --enable-unsupported    \
-            --enable-parallel       \
-            --with-pthread=yes      \
-            --with-zlib="${PREFIX}" \
-            --with-default-plugindir="${PREFIX}/lib/hdf5/plugin"
+./configure \
+  --prefix="${PREFIX}" \
+  CC=mpicc \
+  CFLAGS="${CFLAGS}" \
+  --disable-cxx \
+  --disable-fortran \
+  --disable-debug \
+  --enable-linux-lfs \
+  --enable-threadsafe \
+  --enable-production \
+  --enable-unsupported \
+  --enable-parallel \
+  --with-pthread=yes \
+  --with-zlib="${PREFIX}" \
+  --with-default-plugindir="${PREFIX}/lib/hdf5/plugin"
 
 make -j "${CPU_COUNT}"
 

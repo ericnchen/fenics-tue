@@ -5,14 +5,15 @@
 set -e
 
 # openmpi -> blacs
-# openmpi -> blacs -> scalapack
+# openmpi -> hdf5
 # openmpi -> scotch
+
+# openmpi -> blacs -> scalapack
 
 # ---
 
-# openmpi -> [blacs, scalapack, scotch] -> mumps
-# openmpi -> hdf5
 # openmpi -> hypre
+# openmpi -> [blacs, scalapack, scotch] -> mumps
 
 # ---
 

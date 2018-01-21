@@ -7,7 +7,7 @@ source:
   md5: ff2e55cc529802e7b0738cf87acd3ee4
 
 build:
-  number: 5
+  number: 6
 
 requirements:
   build:
@@ -21,6 +21,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}
+    - libgcc-ng
 
 test:
   source_files:

@@ -7,24 +7,10 @@ source:
   sha256: f53f4d71a8345ba15e2dd4e102a35fd83915abf50ea73e1bf6efe1bc2b4220c7
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
-    - {{ compiler('c') }}
     - {{ openmpi }}
     - bison
     - zlib
-
-  run:
-    - {{ compiler('c') }}
-    - {{ openmpi }}
-    - zlib
-
-test:
-  source_files:
-    - src/check
-    - src/libscotch/*.h
-
-  commands:
-    - conda inspect linkages scotch

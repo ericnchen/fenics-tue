@@ -9,9 +9,9 @@ CAT        = cat
 CCS       := $(GCC)
 CCP        = mpicc
 CCD        = mpicc
-CFLAGS     = -O3 -DCOMMON_FILE_COMPRESS_GZ -DCOMMON_PTHREAD -DCOMMON_RANDOM_FIXED_SEED -DSCOTCH_RENAME -DSCOTCH_PTHREAD -Drestrict=__restrict -DIDXSIZE64 -DSCOTCH_PTHREAD_NUMBER=2 -fPIC
+CFLAGS    := $(CFLAGS) -DCOMMON_FILE_COMPRESS_GZ -DCOMMON_PTHREAD -DCOMMON_RANDOM_FIXED_SEED -DSCOTCH_RENAME -DSCOTCH_PTHREAD -Drestrict=__restrict -DIDXSIZE64 -DSCOTCH_PTHREAD_NUMBER=2
 CLIBFLAGS  =
-LDFLAGS    = -L$(CONDA_PREFIX)/lib -lz -lm -lrt -pthread
+LDFLAGS   := $(LDFLAGS) -lz -lm -lrt -pthread
 CP         = cp
 LEX        = flex -Pscotchyy -olex.yy.c
 LN         = ln

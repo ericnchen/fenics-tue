@@ -1,22 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
-# Unset the default compile/link flags that the conda compiler tools set.
-unset \
-  DEBUG_FORTRANFLAGS \
-  CXXFLAGS \
-  DEBUG_CXXFLAGS \
-  DEBUG_FFLAGS \
-  FORTRANFLAGS \
-  CFLAGS \
-  DEBUG_CFLAGS \
-  FFLAGS
+source "${RECIPE_DIR}/fix-environment.sh"
 
 cp "${RECIPE_DIR}/Makefile.inc" src/Makefile.inc
 
 cd src
-
-export CPATH="${CONDA_PREFIX}/include:${CPATH}"
 
 make -j "${CPU_COUNT}" scotch
 make -j "${CPU_COUNT}" ptscotch
@@ -25,9 +14,12 @@ make -j "${CPU_COUNT}" ptscotch
 make esmumps
 make ptesmumps
 
+(cd check && make check)
+(cd check && make ptcheck)
+
 make prefix="${PREFIX}" install
 
-# Copy the additional esmumps outputs that the above didn't  copy.
+# Copy the additional esmumps outputs that the above didn't copy.
 cp ../include/esmumps.h  "${PREFIX}/include/esmumps.h"
 cp ../include/metis.h    "${PREFIX}/include/metis.h"
 cp ../include/parmetis.h "${PREFIX}/include/parmetis.h"

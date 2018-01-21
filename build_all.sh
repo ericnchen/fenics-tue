@@ -6,9 +6,9 @@ set -e
 
 # openmpi -> blacs
 # openmpi -> blacs -> scalapack
+# openmpi -> scotch
 
 # ---
-# openmpi -> scotch
 
 # openmpi -> [blacs, scalapack, scotch] -> mumps
 # openmpi -> hdf5

@@ -26,8 +26,13 @@ RUN yum update && \
     rm -rf /tmp/*
 
 # Copy over relevant files/scripts and fix permissions.
-ADD conda-build.sh   /home/builder/conda-build.sh
-RUN chown -R builder /home/builder/conda-build.sh
+ADD anaconda-upload.sh     /home/builder/anaconda-upload.sh
+ADD conda-build.sh         /home/builder/conda-build.sh
+ADD get-anaconda-client.sh /home/builder/get-anaconda-client.sh
+RUN chown -R builder \
+    /home/builder/anaconda-upload.sh \
+    /home/builder/conda-build.sh \
+    /home/builder/get-anaconda-client.sh
 
 # Set the builder user and work directory.
 USER builder

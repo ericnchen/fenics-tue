@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-#
-# Convenience function to build the fenics-tue-builder docker image.
-
-docker build -t fenics-tue-builder:latest docker

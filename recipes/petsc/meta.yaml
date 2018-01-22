@@ -7,7 +7,7 @@ source:
   sha256: fdc94525422c41ed617b38d09723bb27c6dbf4831c4c6cc1e27850e60788ccfa
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -20,11 +20,9 @@ requirements:
 
   run:
     - {{ openmpi }}
+    - libgcc-ng
     - openblas
 
 test:
-  requires:
-    - libgcc-ng
-
   commands:
     - conda inspect linkages petsc

@@ -47,13 +47,22 @@ export LD_LIBRARY_PATH="${PREFIX}/lib"
   --with-ssl=0 \
   --with-pthread=1
 
+sedinplace() { [[ $(uname) == Darwin ]] && sed -i "" $@ || sed -i"" $@; }
+for path in $PETSC_DIR $PREFIX; do
+    sedinplace s%$path%\${PETSC_DIR}%g $PETSC_ARCH/include/petsc*.h
+done
+
 # At some point I should add this library back in.
 # At the moment, I leave it out because it seems to require METIS.
 #  --with-suitesparse=1
 
-make MAKE_NP="${CPU_COUNT}"
+make MAKE_NP=4
+
 make check
+make streams
+
 make install
+make test
 
 rm -rf "${PREFIX}/bin"
 rm -rf "${PREFIX}/share"

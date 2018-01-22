@@ -5,6 +5,7 @@
 set -e
 
 # fenics-dijitso
+# fenics-ufl
 
 # openmpi
 
@@ -21,7 +22,6 @@ set -e
 
 # ---
 
-# fenics-ufl
 # fenics-instant
 # fenics-fiat
 # fenics-ffc

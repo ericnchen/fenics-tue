@@ -1,0 +1,25 @@
+package:
+  name: fenics-ufl
+  version: 2017.1.0
+
+source:
+  url: https://bitbucket.org/fenics-project/ufl/downloads/ufl-2017.1.0.tar.gz
+  sha256: af87fa10f492660e8dd9f5c820c03529e017b80bf2002da54b8234c56b8dda8f
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python {{ python }}
+
+  run:
+    - python {{ python }}
+    - six
+
+test:
+  imports:
+    - ufl
+
+  commands:
+    - conda inspect linkages fenics-ufl

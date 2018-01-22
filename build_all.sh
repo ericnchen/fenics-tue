@@ -4,10 +4,12 @@
 
 set -e
 
-# fenics-dijitso
-# fenics-ufl
-# fenics-instant
-# fenics-fiat
+# python -> fenics-dijitso
+# python -> fenics-ufl
+# python -> fenics-instant
+# python -> fenics-fiat
+
+# python -> [fenics-ufl, fenics-fiat] -> fenics-ffc
 
 # openmpi
 
@@ -23,8 +25,6 @@ set -e
 # openmpi -> [blacs, scalapack, scotch, mumps, hdf5, hypre, suitesparse] -> petsc
 
 # ---
-
-# fenics-ffc
 
 #bash conda_build dolfin
 #bash conda_build mshr

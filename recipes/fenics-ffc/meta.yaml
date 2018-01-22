@@ -1,0 +1,28 @@
+package:
+  name: fenics-ffc
+  version: 2017.1.0
+
+source:
+  url: https://bitbucket.org/fenics-project/ffc/downloads/ffc-2017.1.0.tar.gz
+  sha256: 2073c4d8f998798a3b0a8a371e74d9848f0e52933cf5f35cee21e82ab3fe87b3
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python {{ python }}
+
+  run:
+    - python {{ python }}
+    - {{ ufl }}
+    - {{ fiat }}
+    - numpy
+    - nomkl
+
+test:
+  imports:
+    - ffc
+
+  commands:
+    - conda inspect linkages fenics-ffc

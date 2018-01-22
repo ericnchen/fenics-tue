@@ -6,3 +6,6 @@ scotch:    scotch    6.0.4  h9ff5400_4
 scalapack: scalapack 2.0.2  hb6948fa_2
 mumps:     mumps     5.1.2  hbbc0584_3
 petsc:     petsc     3.8.1  h8228430_0
+python:
+  - 2.7
+  - 3.5

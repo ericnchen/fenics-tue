@@ -4,6 +4,10 @@
 
 set -e
 
+# fenics-dijitso
+
+# openmpi
+
 # openmpi -> blacs
 # openmpi -> hdf5
 # openmpi -> hypre
@@ -17,7 +21,6 @@ set -e
 
 # ---
 
-# fenics-dijitso
 # fenics-ufl
 # fenics-instant
 # fenics-fiat

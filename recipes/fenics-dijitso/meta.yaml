@@ -1,0 +1,28 @@
+package:
+  name: fenics-dijitso
+  version: 2017.1.0
+
+source:
+  url: https://bitbucket.org/fenics-project/dijitso/downloads/dijitso-2017.1.0.tar.gz
+  sha256: ef23952539d349fbd384d41302abc94413d485ca7e8c29e8a0debc2aadaf8657
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python {{ python }}
+
+  run:
+    - python {{ python }}
+    - subprocess32  # [py2k]
+    - six
+    - numpy
+    - nomkl
+
+test:
+  imports:
+    - dijitso
+
+  commands:
+    - conda inspect linkages fenics-dijitso

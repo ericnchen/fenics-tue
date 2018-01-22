@@ -13,15 +13,17 @@ set -e
 
 # openmpi -> [blacs, blacs, scotch, scalapack] -> mumps
 
-# ---
-
-# openmpi -> XXX -> suitesparse
-
 # openmpi -> [blacs, scalapack, scotch, mumps, hdf5, hypre, suitesparse] -> petsc
 
-#bash conda_build fenics-components
+# ---
+
+# fenics-dijitso
+# fenics-ufl
+# fenics-instant
+# fenics-fiat
+# fenics-ffc
 
 #bash conda_build dolfin
 #bash conda_build mshr
-
 #bash conda_build fenics
+# openmpi -> XXX -> suitesparse

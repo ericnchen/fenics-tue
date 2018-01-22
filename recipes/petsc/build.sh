@@ -1,59 +1,69 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e
+
+source "${RECIPE_DIR}/fix-environment.sh"
 
 export PETSC_DIR="${SRC_DIR}"
 export PETSC_ARCH='arch-conda-c-opt'
 
+unset FC
+unset F77
 unset CC
 unset CXX
-unset FC
 
-export LDFLAGS="-pthread ${LDFLAGS}"
+export LD_LIBRARY_PATH="${PREFIX}/lib"
 
-OPTFLAGS="-O3"
+./configure \
+  --prefix="${PREFIX}" \
+  --with-clib-autodetect=0 \
+  --with-cxxlib-autodetect=0 \
+  --with-fortranlib-autodetect=0 \
+  --with-debugging=0 \
+  --CC=mpicc \
+  --CXX=mpicxx \
+  --FC=mpifort \
+  --F77=mpifort \
+  --AR="${AR}" \
+  --CPP="${CPP}" \
+  --CPPFLAGS="${CPPFLAGS}" \
+  --FFLAGS="${FFLAGS}" \
+  --FCFLAGS="${FCFLAGS}" \
+  --CFLAGS="${CFLAGS}" \
+  --CXXFLAGS="${CXXFLAGS}" \
+  --LDFLAGS="${LDFLAGS} -pthread" \
+  --with-blas-lapack-lib="-lopenblas" \
+  --with-ptscotch-include="${PREFIX}/include" \
+  --with-ptscotch-lib=[-lptesmumps,-lptscotch,-lscotch,-lscotcherr] \
+  --with-mpi-include="${PREFIX}/include" \
+  --with-mpi-lib="-lmpi" \
+  --with-hypre=1 \
+  --with-scalapack-include="${PREFIX}/include" \
+  --with-scalapack-lib=[-lscalapack,-lblacs,-lblacs_F77init,-lblacs,-lgfortran] \
+  --with-mumps-include="${PREFIX}/include" \
+  --with-mumps-lib=[-ldmumps,-lmumps_common,-lptesmumps,-lptscotch,-lscotch,-lscotcherr,-lpord,-lscalapack,-lblacs,-lblacs_F77init,-lblacs,-lmpi_mpifh,-lopenblas,-lpthread] \
+  --with-x=0 \
+  --with-valgrind=0 \
+  --with-hwloc=0 \
+  --with-ssl=0 \
+  --with-pthread=1
 
-./configure                                        \
-  --prefix="${PREFIX}"                             \
-  --with-debugging=0                               \
-  --CPPFLAGS="${CPPFLAGS}"                         \
-  --CFLAGS="${CFLAGS}"                             \
-  --CXXFLAGS="${CXXFLAGS}"                         \
-  --FFLAGS="${FFLAGS}"                             \
-  --COPTFLAGS="${OPTFLAGS}"                        \
-  --CXXOPTFLAGS="${OPTFLAGS}"                      \
-  --FOPTFLAGS="${OPTFLAGS}"                        \
-  --LDFLAGS="${LDFLAGS}"                           \
-  --with-blas-lapack-lib="libopenblas${SHLIB_EXT}" \
-  --with-ptscotch=1                                \
-  --with-hypre=1                                   \
-  --with-scalapack=1                               \
-  --with-mumps=1                                   \
-  --with-x=0                                       \
-  --with-valgrind=0                                \
-  --with-suitesparse=1
+# At some point I should add this library back in.
+# At the moment, I leave it out because it seems to require METIS.
+#  --with-suitesparse=1
 
-sedinplace() { [[ $(uname) == Darwin ]] && sed -i "" $@ || sed -i"" $@; }
-for path in $PETSC_DIR $PREFIX; do
-    sedinplace s%$path%\${PETSC_DIR}%g $PETSC_ARCH/include/petsc*.h
-done
-
-make MAKE_NP=4
-
-# FIXME: Workaround mpiexec setting O_NONBLOCK in std{in|out|err}
-# See https://github.com/conda-forge/conda-smithy/pull/337
-# See https://github.com/pmodels/mpich/pull/2755
-make check MPIEXEC="${RECIPE_DIR}/mpiexec.sh"
-
+make MAKE_NP="${CPU_COUNT}"
+make check
 make install
 
-rm -fr $PREFIX/bin && mkdir $PREFIX/bin
-rm -fr $PREFIX/share && mkdir $PREFIX/share
-rm -fr $PREFIX/lib/lib$PKG_NAME.*.dylib.dSYM
-rm -f  $PREFIX/lib/$PKG_NAME/conf/.DIR
-rm -f  $PREFIX/lib/$PKG_NAME/conf/mpitest.c
-rm -f  $PREFIX/lib/$PKG_NAME/conf/files
-rm -f  $PREFIX/lib/$PKG_NAME/conf/testfiles
-rm -f  $PREFIX/lib/$PKG_NAME/conf/*.py
-rm -f  $PREFIX/lib/$PKG_NAME/conf/*.log
-rm -f  $PREFIX/lib/$PKG_NAME/conf/RDict.db
-rm -f  $PREFIX/lib/$PKG_NAME/conf/*BuildInternal.cmake
-find   $PREFIX/include -name '*.html' -delete
+rm -rf "${PREFIX}/bin"
+rm -rf "${PREFIX}/share"
+
+rm -f "${PREFIX}/lib/petsc/conf/*.log"
+rm -f "${PREFIX}/lib/petsc/conf/files"
+rm -f "${PREFIX}/lib/petsc/conf/testfiles"
+rm -f "${PREFIX}/lib/petsc/conf/RDict.db"
+rm -f "${PREFIX}/lib/petsc/conf/PETScBuildInternal.cmake"
+rm -f "${PREFIX}/lib/petsc/conf/mpitest.c"
+rm -f "${PREFIX}/lib/petsc/conf/uninstall.py"
+rm -f "${PREFIX}/lib/petsc/conf/test"
+rm -f "${PREFIX}/lib/petsc/conf/.DIR"

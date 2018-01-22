@@ -8,46 +8,23 @@ source:
 
 build:
   number: 0
-  features:
-    - tue
 
 requirements:
   build:
-    - gcc         4.8.5  7
-    - hypre       2.11.2 1
-    - libgcc      4.8.5  2
-    - libgfortran 3.0.0  1
-    - metis       5.1.0  3
-    - mpich       3.2    5
-    - mumps       5.0.2  tue_0
-    - openblas    0.2.20 6
-    - ptscotch    6.0.4  4
-    - python      2.7
-    - scalapack   2.0.2  1
-    - scotch      6.0.4  3
-    - suitesparse 4.5.4  blas_openblas_201
+    - {{ openmpi }}
+    - {{ blacs }}
+    - {{ hypre }}
+    - {{ scotch }}
+    - {{ scalapack }}
+    - {{ mumps }}
 
   run:
-    - gcc         4.8.5  7
-    - hypre       2.11.2 1
-    - libgcc      4.8.5  2
-    - libgfortran 3.0.0  1
-    - metis       5.1.0  3
-    - mpich       3.2    5
-    - mumps       5.0.2  tue_0
-    - openblas    0.2.20 6
-    - ptscotch    6.0.4  4
-    - scalapack   2.0.2  1
-    - scotch      6.0.4  3
-    - suitesparse 4.5.4  blas_openblas_201
-    - tue
+    - {{ openmpi }}
+    - openblas
 
 test:
   requires:
-    - python
-
-  source_files:
-    - src/snes/examples/tests
+    - libgcc-ng
 
   commands:
     - conda inspect linkages petsc

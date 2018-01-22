@@ -7,6 +7,7 @@ set -e
 # fenics-dijitso
 # fenics-ufl
 # fenics-instant
+# fenics-fiat
 
 # openmpi
 
@@ -23,7 +24,6 @@ set -e
 
 # ---
 
-# fenics-fiat
 # fenics-ffc
 
 #bash conda_build dolfin

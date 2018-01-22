@@ -1,11 +1,15 @@
-openmpi:   openmpi   2.1.2  h1c2f66e_6
 blacs:     blacs     1.1    h9ff5400_6
 hdf5:      hdf5      1.8.20 h9ff5400_2
 hypre:     hypre     2.11.2 h9ff5400_2
-scotch:    scotch    6.0.4  h9ff5400_4
-scalapack: scalapack 2.0.2  hb6948fa_2
 mumps:     mumps     5.1.2  hbbc0584_3
+openmpi:   openmpi   2.1.2  h1c2f66e_6
 petsc:     petsc     3.8.1  h8228430_0
 python:
   - 2.7
   - 3.5
+scalapack: scalapack 2.0.2  hb6948fa_2
+scotch:    scotch    6.0.4  h9ff5400_4
+
+fenics-dijitso:   fenics-dijitso 2017.1.0
+fenics-instant:   fenics-instant 2017.1.0
+fenics-ufl:       fenics-ufl     2017.1.0

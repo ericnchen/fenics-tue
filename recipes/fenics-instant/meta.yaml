@@ -1,0 +1,25 @@
+package:
+  name: fenics-instant
+  version: 2017.1.0
+
+source:
+  url: https://bitbucket.org/fenics-project/instant/downloads/instant-2017.1.0.tar.gz
+  sha256: 38f56bd9a583518fb023a90be6d09a114d74a36cacb91cbf50167002ac815ee7
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python {{ python }}
+
+  run:
+    - python {{ python }}
+    - six
+
+test:
+  imports:
+    - instant
+
+  commands:
+    - conda inspect linkages fenics-instant

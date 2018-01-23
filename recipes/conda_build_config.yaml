@@ -3,7 +3,7 @@ hdf5:      hdf5           1.8.20   h9ff5400_2
 hypre:     hypre          2.11.2   h9ff5400_2
 mumps:     mumps          5.1.2    hbbc0584_3
 openmpi:   openmpi        2.1.2    h1c2f66e_6
-petsc:     petsc          3.8.1    hf1f9a99_1
+petsc:     petsc          3.8.1    hf1f9a99_2
 scalapack: scalapack      2.0.2    hb6948fa_2
 scotch:    scotch         6.0.4    h9ff5400_4
 dijitso:   fenics-dijitso 2017.1.0

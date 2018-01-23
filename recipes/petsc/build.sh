@@ -3,13 +3,13 @@ set -e
 
 source "${RECIPE_DIR}/fix-environment.sh"
 
-export PETSC_DIR="${SRC_DIR}"
-export PETSC_ARCH='arch-conda-c-opt'
-
 unset FC
 unset F77
 unset CC
 unset CXX
+
+export PETSC_DIR="${SRC_DIR}"
+export PETSC_ARCH='arch-conda-c-opt'
 
 export LD_LIBRARY_PATH="${PREFIX}/lib"
 
@@ -59,7 +59,7 @@ done
 make MAKE_NP=4
 
 make check
-make streams
+#make streams  # takes too long
 
 make install
 make test

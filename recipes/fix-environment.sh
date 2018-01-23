@@ -44,6 +44,30 @@ unset \
   DEBUG_FORTRANFLAGS \
   fortran_compiler
 
+# Filter out the -fdebug-prefix-map flags.
+# Couldn't get it to work with simple substitutions or sed.
+filter_fdebug_flags () {
+  unset filtered_flags
+  local array=(${1})
+  for i in "${!array[@]}"
+  do
+    if [ "${array[i]:0:9}" != "-fdebug-p" ]; then
+      if [ -z "${filtered_flags}" ]; then
+        filtered_flags="${array[i]}"
+      else
+        filtered_flags="${filtered_flags} ${array[i]}"
+      fi
+    fi
+  done
+  echo "${filtered_flags}"
+}
+
+CFLAGS=$(filter_fdebug_flags "${CFLAGS}")
+CXXFLAGS=$(filter_fdebug_flags "${CXXFLAGS}")
+FCFLAGS=$(filter_fdebug_flags "${FCFLAGS}")
+FFLAGS=$(filter_fdebug_flags "${FFLAGS}")
+FORTRANFLAGS=$(filter_fdebug_flags "${FORTRANFLAGS}")
+
 # Export all changed variables.
 export \
   CFLAGS \

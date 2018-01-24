@@ -1,8 +1,0 @@
-package:
-  name: tue
-  version: 1.0
-
-build:
-  number: 0
-  track_features:
-    - tue

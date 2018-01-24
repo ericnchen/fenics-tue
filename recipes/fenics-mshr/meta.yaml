@@ -1,5 +1,5 @@
 package:
-  name: mshr
+  name: fenics-mshr
   version: 2017.1.0
 
 source:
@@ -8,26 +8,27 @@ source:
 
 build:
   number: 0
-  features:
-    - tue
 
 requirements:
   build:
-    - cmake
-    - dolfin            2017.1.0
     - python {{ python }}
-    - swig              3.0.12   2
+    - {{ openmpi }}
+    - {{ dolfin }}
+    - cmake
+    - eigen
+    - subprocess32  # [py2k]
 
   run:
-    - dolfin            2017.1.0
     - python {{ python }}
+    - {{ dolfin }}
 
 test:
   source_files:
-    - test
+    - test/test-meshes.py
+    - test/test-mesh-generation.py
 
   imports:
     - mshr
 
   commands:
-    - conda inspect linkages mshr
+    - conda inspect linkages fenics-mshr

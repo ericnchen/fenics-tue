@@ -11,6 +11,7 @@ dolfin:    fenics-dolfin  2017.1.0
 ffc:       fenics-ffc     2017.1.0
 fiat:      fenics-fiat    2017.1.0
 instant:   fenics-instant 2017.1.0
+mshr:      fenics-mshr    2017.1.0
 ufl:       fenics-ufl     2017.1.0
 python:
   - 2.7

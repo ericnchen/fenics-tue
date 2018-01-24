@@ -6,33 +6,21 @@ FROM centos:6
 # TODO: This should be eventually generalized at some point.
 RUN useradd -m -s /bin/bash -u 1000 builder
 
+# Install additional tools via yum.
+RUN yum update -y && \
+    yum install -y perl openssh-clients && \
+    yum clean -y all && rm -rf /tmp/*
+
 # Install the Anaconda Python distribution and conda-build.
 RUN curl -so /tmp/Miniconda3-Linux-x86_64.sh https://repo.continuum.io/miniconda/Miniconda3-4.3.31-Linux-x86_64.sh && \
     echo '7fe70b214bee1143e3e3f0467b71453c  /tmp/Miniconda3-Linux-x86_64.sh' > /tmp/Miniconda3-Linux-x86_64.md5sum && \
     md5sum -c /tmp/Miniconda3-Linux-x86_64.md5sum && \
     bash /tmp/Miniconda3-Linux-x86_64.sh -bp /anaconda && \
-    /anaconda/bin/conda install -y conda-build && \
+    /anaconda/bin/conda install -y anaconda-client conda-build && \
     /anaconda/bin/conda update -y --all && \
     /anaconda/bin/conda clean -y --all && \
-    rm /tmp/* && \
+    rm -rf /tmp/* && \
     chown -R builder /anaconda
-
-# Install additional tools via yum.
-RUN yum update && \
-    yum install -y \
-        perl \
-        openssh-clients && \
-    yum clean -y all && \
-    rm -rf /tmp/*
-
-# Copy over relevant files/scripts and fix permissions.
-ADD anaconda-upload.sh     /home/builder/anaconda-upload.sh
-ADD conda-build.sh         /home/builder/conda-build.sh
-ADD get-anaconda-client.sh /home/builder/get-anaconda-client.sh
-RUN chown -R builder \
-    /home/builder/anaconda-upload.sh \
-    /home/builder/conda-build.sh \
-    /home/builder/get-anaconda-client.sh
 
 # Set the builder user and work directory.
 USER builder

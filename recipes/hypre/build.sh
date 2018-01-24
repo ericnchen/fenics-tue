@@ -21,6 +21,9 @@ cd src
   --with-lapack-lib="-llapack" \
   --with-fei=no
 
+# TODO: For next builds, add:
+#        --enable-shared
+
 make
 
 make check

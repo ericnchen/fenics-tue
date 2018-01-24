@@ -19,3 +19,10 @@ MKDIR      = mkdir
 MV         = mv
 RANLIB    := $(RANLIB)
 YACC       = bison -pscotchyy -y -b y
+
+# TODO
+# Try these options in the future to build a shared library.
+# LIB		= .so
+# AR		= gcc
+# ARFLAGS		= -shared -o
+# CLIBFLAGS	= -shared -fPIC

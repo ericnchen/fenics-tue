@@ -7,6 +7,7 @@ petsc:     petsc          3.8.1    hf1f9a99_2
 scalapack: scalapack      2.0.2    hb6948fa_2
 scotch:    scotch         6.0.4    h9ff5400_4
 dijitso:   fenics-dijitso 2017.1.0
+dolfin:    fenics-dolfin  2017.1.0
 ffc:       fenics-ffc     2017.1.0
 fiat:      fenics-fiat    2017.1.0
 instant:   fenics-instant 2017.1.0

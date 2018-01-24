@@ -1,0 +1,54 @@
+package:
+  name: fenics-dolfin
+  version: 2017.1.0
+
+source:
+  url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-2017.1.0.tar.gz
+  sha256: ba793a2d41995d65ce4ee9e955e06342a6357174420b727cfde9fc6c70590e92
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python {{ python }}
+    - {{ openmpi }}
+    - {{ hypre }}
+    - {{ mumps }}
+    - {{ scotch }}
+    - {{ scalapack }}
+    - {{ blacs }}
+    - {{ hdf5 }}
+    - {{ ffc }}
+    - {{ petsc }}
+    - openblas
+    - boost
+    - cmake
+    - eigen
+    - nomkl
+    - ply
+    - swig
+    - pthread-stubs
+
+  run:
+    - python {{ python }}
+    - {{ openmpi }}
+    - {{ hdf5 }}
+    - {{ ffc }}
+    - {{ ufl }}
+    - {{ instant }}
+    - {{ petsc }}
+    - openblas
+    - boost
+    - nomkl
+    - numpy
+    - ply
+    - swig
+
+test:
+  imports:
+    - dolfin
+    - fenics
+
+  commands:
+    - conda inspect linkages fenics-dolfin

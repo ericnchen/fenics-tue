@@ -10,6 +10,7 @@ set -e
 # python -> fenics-fiat
 
 # python -> [fenics-ufl, fenics-fiat] -> fenics-ffc
+# python -> [fenics-dijitso, fenics-ufl, fenics-instant, fenics-fiat, fenics-ffc] -> fenics-dolfin
 
 # openmpi
 
@@ -26,7 +27,5 @@ set -e
 
 # ---
 
-#bash conda_build dolfin
 #bash conda_build mshr
-#bash conda_build fenics
 # openmpi -> XXX -> suitesparse

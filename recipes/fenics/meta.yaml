@@ -4,18 +4,19 @@ package:
 
 build:
   number: 0
-  features:
-    - tue
 
 requirements:
   build:
     - python {{ python }}
 
   run:
-    - dolfin              2017.1.0
-    - mshr                2017.1.0
     - python {{ python }}
-    - tue
+    - {{ dolfin }}
+    - {{ mshr }}
+    - {{ dijitso }}
+    - matplotlib
+    - pandas
+    - scipy
 
 test:
   imports:

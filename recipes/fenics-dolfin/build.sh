@@ -9,7 +9,7 @@ export LD_LIBRARY_PATH="${PREFIX}/lib"
 
 # Tarball includes cached swig output built with Python 3.
 # Re-generate it with correct Python.
-"${PYTHON}" cmake/scripts/generate-swig-interface.py
+PYTHONENCODING=utf-8 python cmake/scripts/generate-swig-interface.py
 
 rm -rf build && mkdir build
 

@@ -48,20 +48,25 @@ These are just building notes that I haven't organized yet::
    # python -> fenics-ufl
    # python -> fenics-instant
    # python -> fenics-fiat
-   
+
    # python -> [fenics-ufl, fenics-fiat] -> fenics-ffc
    # python -> [fenics-dijitso, fenics-ufl, fenics-instant, fenics-fiat, fenics-ffc] -> fenics-dolfin
    # python -> [fenics-dijitso, fenics-ufl, fenics-instant, fenics-fiat, fenics-ffc, fenics-dolfin] -> fenics-mshr
-   
-   # openmpi
-   
+
+   # binutils
+   # binutils -> gcc
+   # binutils -> gcc -> gxx
+   # binutils -> gcc -> gfortran
+
+   # [toolchain] --> openmpi
+
    # openmpi -> blacs
    # openmpi -> hdf5
    # openmpi -> hypre
    # openmpi -> scotch
-   
+
    # openmpi -> blacs -> scalapack
-   
+
    # openmpi -> [blacs, blacs, scotch, scalapack] -> mumps
-   
+
    # openmpi -> [blacs, scalapack, scotch, mumps, hdf5, hypre, suitesparse] -> petsc

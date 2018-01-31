@@ -1,0 +1,1 @@
+strong: ['libgfortran-ng  >=7,<8.0a0', libgcc-ng >=7.2.0]

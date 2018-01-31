@@ -1,0 +1,16 @@
+package:
+    name: gcc_haswell_haswell_{{ target_platform }}
+    version: 7.2.0
+
+build:
+    number: 0
+    run_exports:
+        strong:
+            - libgcc-ng >=7.2.0
+
+requirements:
+    build:
+        - gcc_impl_{{ target_platform }}
+    run:
+        - gcc_impl_{{ target_platform }} 7.2.0
+        - binutils_haswell_haswell_{{ target_platform }} 7.2.0

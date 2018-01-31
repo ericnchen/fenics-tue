@@ -1,0 +1,18 @@
+package:
+    name: gfortran_haswell_haswell_{{ target_platform }}
+    version: 7.2.0
+
+build:
+    number: 0
+    run_exports:
+        strong:
+            - libgcc-ng >=7.2.0
+            - libgfortran-ng  >=7,<8.0a0
+
+requirements:
+    build:
+        - gcc_impl_{{ target_platform }}
+    run:
+        - gfortran_impl_{{ target_platform }} 7.2.0
+        - binutils_haswell_haswell_{{ target_platform }} 7.2.0
+        - gcc_haswell_haswell_{{ target_platform }} 7.2.0

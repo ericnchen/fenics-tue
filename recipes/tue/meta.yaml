@@ -1,9 +1,12 @@
 package:
-  name: tue_rng
+  name: tue
   version: "1.0"
 
 build:
   number: 0
+  string: {{ march }}_{{ PKG_BUILDNUM }}
+  track_features:
+    - {{ march }}
 
 requirements:
   build:

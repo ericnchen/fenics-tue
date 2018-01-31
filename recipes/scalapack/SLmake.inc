@@ -28,7 +28,7 @@ CDEFS         = -DAdd_
 
 FC            = mpif77
 CC            = mpicc
-NOOPT         = -O0 -fPIC
+NOOPT         = -O0 -fPIC -ftree-vectorize -fno-plt -pipe
 FCFLAGS       = $(FFLAGS)
 CCFLAGS       = $(CFLAGS)
 FCLOADER      = $(FC)

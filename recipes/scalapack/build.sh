@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-source "${RECIPE_DIR}/fix-environment.sh"
-
 cp "${RECIPE_DIR}/SLmake.inc" SLmake.inc
 cp "${RECIPE_DIR}/TOOLS_Makefile" TOOLS/Makefile
 

@@ -7,10 +7,10 @@ source:
   sha256: 0c74aeae690fe5ee4db7926f49c5d0bb69ce09eea75beb915e00bba07530395c
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
-    - {{ blacs }}
-    - {{ openmpi }}
+    - blacs 1.1
+    - openmpi 2.1.2
     - openblas

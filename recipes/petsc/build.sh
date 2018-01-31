@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-source "${RECIPE_DIR}/fix-environment.sh"
-
 unset FC
 unset F77
 unset CC

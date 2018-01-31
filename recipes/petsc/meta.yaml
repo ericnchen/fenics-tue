@@ -7,19 +7,20 @@ source:
   sha256: fdc94525422c41ed617b38d09723bb27c6dbf4831c4c6cc1e27850e60788ccfa
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
-    - {{ openmpi }}
-    - {{ blacs }}
-    - {{ hypre }}
-    - {{ scotch }}
-    - {{ scalapack }}
-    - {{ mumps }}
+    - openmpi 2.1.2
+    - blacs 1.1
+    - hypre 2.11.2
+    - scotch 6.0.4
+    - scalapack 2.0.2
+    - mumps 5.1.2
+    - openblas
 
   run:
-    - {{ openmpi }}
+    - openmpi 2.1.2
     - libgcc-ng
     - openblas
 

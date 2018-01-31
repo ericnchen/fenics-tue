@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-source "${RECIPE_DIR}/fix-environment.sh"
-
 cp "${RECIPE_DIR}/Makefile.inc" Makefile.inc
 cp "${RECIPE_DIR}/examples_Makefile" examples/Makefile
 
@@ -12,14 +10,16 @@ export AR="${AR} vr "
 make alllib
 
 # Manually install.
-cp lib/*.a     "${PREFIX}/lib"
-cp include/*.h "${PREFIX}/include"
+mkdir -p "${PREFIX}/lib" "${PREFIX}/include"
+cp lib/*.a "${PREFIX}/lib/."
+cp include/*.h "${PREFIX}/include/."
 
 cd examples
 
 make all
 
 # Test the Fortran programs.
+export LD_LIBRARY_PATH="${PREFIX}/lib"
 mpirun -np "${CPU_COUNT}" ssimpletest < input_simpletest_real
 mpirun -np "${CPU_COUNT}" dsimpletest < input_simpletest_real
 mpirun -np "${CPU_COUNT}" csimpletest < input_simpletest_cmplx

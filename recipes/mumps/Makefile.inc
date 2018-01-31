@@ -54,7 +54,7 @@ CDEFS   = -DAdd_
 # Begin Optimized options
 OPTF = $(FFLAGS) -DALLOW_NON_INIT
 OPTC = $(CFLAGS) -DALLOW_NON_INIT
-OPTL = -O3 -fPIC -DALLOW_NON_INIT
+OPTL = $(LDFLAGS) -DALLOW_NON_INIT
 #End Optimized options
 
 INCS = $(INCPAR)

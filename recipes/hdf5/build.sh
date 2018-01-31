@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
-source "${RECIPE_DIR}/fix-environment.sh"
-
-#export LIBRARY_PATH="${PREFIX}/lib"
-
 ./configure \
   --prefix="${PREFIX}" \
   CC=mpicc \
   CFLAGS="${CFLAGS}" \
+  LDFLAGS="${LDFLAGS}" \
   --disable-cxx \
   --disable-fortran \
   --disable-debug \

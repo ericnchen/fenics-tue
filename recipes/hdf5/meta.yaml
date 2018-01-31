@@ -7,15 +7,15 @@ source:
   md5: 23078d57975903e9536d1e7b299cc39c
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
-    - {{ openmpi }}
+    - openmpi 2.1.2
     - zlib
 
   run:
-    - {{ openmpi }}
+    - openmpi 2.1.2
     - zlib
 
 test:

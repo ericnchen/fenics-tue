@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-source "${RECIPE_DIR}/fix-environment.sh"
-
 cp "${RECIPE_DIR}/SRC_MPI_Makefile" SRC/MPI/Makefile
 cp "${RECIPE_DIR}/TESTING_Makefile" TESTING/Makefile
 cp "${RECIPE_DIR}/TESTING_blacstest.f" TESTING/blacstest.f

@@ -53,12 +53,7 @@ These are just building notes that I haven't organized yet::
    # python -> [fenics-dijitso, fenics-ufl, fenics-instant, fenics-fiat, fenics-ffc] -> fenics-dolfin
    # python -> [fenics-dijitso, fenics-ufl, fenics-instant, fenics-fiat, fenics-ffc, fenics-dolfin] -> fenics-mshr
 
-   # binutils
-   # binutils -> gcc
-   # binutils -> gcc -> gxx
-   # binutils -> gcc -> gfortran
-
-   # [toolchain] --> openmpi
+   # openmpi
 
    # openmpi -> blacs
    # openmpi -> hdf5

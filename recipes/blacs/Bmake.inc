@@ -196,7 +196,7 @@
 #  macros should be obvious from the names.
 #=============================================================================
    F77            = mpif77
-   F77NO_OPTFLAGS = -O0 -fPIC
+   F77NO_OPTFLAGS = -O0 -fPIC -ftree-vectorize -fno-plt -pipe
    F77FLAGS       = $(FFLAGS)
    F77LOADER      = $(F77)
    F77LOADFLAGS   = $(LDFLAGS)

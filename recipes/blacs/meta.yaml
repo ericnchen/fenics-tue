@@ -9,8 +9,8 @@ source:
     sha256: 92dfba8a462a2f23102000a10532c00a9a5203b79ccad5a87f44ce83eb6bc7ed
 
 build:
-  number: 7
+  number: 8
 
 requirements:
   build:
-    - {{ openmpi }}
+    - openmpi 2.1.2

@@ -1,5 +1,0 @@
-march:
-  - march_none
-  - march_haswell
-  - march_nehalem
-  - march_opteron

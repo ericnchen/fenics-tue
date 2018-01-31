@@ -3,7 +3,7 @@ package:
   version: 2017.1.0
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -11,9 +11,9 @@ requirements:
 
   run:
     - python {{ python }}
-    - {{ dolfin }}
-    - {{ mshr }}
-    - {{ dijitso }}
+    - fenics-dolfin 2017.1.0
+    - fenics-mshr 2017.1.0
+    - fenics-dijitso 2017.1.0
     - matplotlib
     - pandas
     - scipy

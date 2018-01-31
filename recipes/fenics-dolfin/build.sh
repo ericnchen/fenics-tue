@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 set -e
 
-source "${RECIPE_DIR}/fix-environment.sh"
-
 export PETSC_DIR="${PREFIX}"
 export PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig"
 export LD_LIBRARY_PATH="${PREFIX}/lib"
 
 # Tarball includes cached swig output built with Python 3.
 # Re-generate it with correct Python.
-PYTHONENCODING=utf-8 python cmake/scripts/generate-swig-interface.py
+python cmake/scripts/generate-swig-interface.py
 
 rm -rf build && mkdir build
 
@@ -25,7 +23,12 @@ cmake .. \
   -DDOLFIN_ENABLE_TRILINOS=0 \
   -DDOLFIN_ENABLE_VTK=0 \
   -DDOLFIN_USE_PYTHON3="${PY3K}" \
-  -DPYTHON_EXECUTABLE="${PYTHON}"
+  -DPYTHON_EXECUTABLE="${PYTHON}" \
+  -DCMAKE_C_FLAGS="${CFLAGS}" \
+  -DCMAKE_C_FLAGS_RELEASE="${CFLAGS}" \
+  -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
+  -DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS}" \
+  -DCMAKE_BUILD_TYPE="release"
 
 make VERBOSE=1 -j "${CPU_COUNT}"
 

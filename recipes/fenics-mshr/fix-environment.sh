@@ -1,1 +1,0 @@
-/home/builder/recipes/fix-environment.sh

@@ -2,7 +2,7 @@ blacs:     blacs          1.1
 hdf5:      hdf5           1.8.20
 hypre:     hypre          2.11.2
 mumps:     mumps          5.1.2
-openmpi:   openmpi        2.1.2     *_7
+openmpi:   openmpi        2.1.2
 petsc:     petsc          3.8.1
 scalapack: scalapack      2.0.2
 scotch:    scotch         6.0.4

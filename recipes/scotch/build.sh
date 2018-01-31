@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-source "${RECIPE_DIR}/fix-environment.sh"
-
 cp "${RECIPE_DIR}/Makefile.inc" src/Makefile.inc
 
 cd src

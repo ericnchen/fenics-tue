@@ -84,13 +84,9 @@ function _tc_activation() {
 # When people are using conda-build, assume that adding rpath during build, and pointing at
 #    the host env's includes and libs is helpful default behavior
 if [ "${CONDA_BUILD}" = "1" ]; then
-  CFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe -I${PREFIX}/include"
-  DEBUG_CFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -pipe -I${PREFIX}/include"
-  LDFLAGS_USED="-Wl,-O3 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,-rpath,${PREFIX}/lib -L${PREFIX}/lib"
+  CXXFLAGS_USED="-fvisibility-inlines-hidden -std=c++11 -fmessage-length=0 -ftree-vectorize -fPIC -fno-plt -O3 -pipe -I${PREFIX}/include"
 else
-  CFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe"
-  DEBUG_CFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -pipe"
-  LDFLAGS_USED="-Wl,-O3 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now"
+  CXXFLAGS_USED="-fvisibility-inlines-hidden -std=c++11 -fmessage-length=0 -ftree-vectorize -fPIC -fno-plt -O3 -pipe"
 fi
 
 if [ -f /tmp/old-env-$$.txt ]; then
@@ -98,46 +94,10 @@ if [ -f /tmp/old-env-$$.txt ]; then
 fi
 env > /tmp/old-env-$$.txt
 
-_PYTHON_SYSCONFIGDATA_NAME_USED=${_PYTHON_SYSCONFIGDATA_NAME:-_sysconfigdata_x86_64_conda_cos6_linux_gnu}
-if [ -n "${_PYTHON_SYSCONFIGDATA_NAME_USED}" ] && [ -n "${SYS_SYSROOT}" ]; then
-  if find "$(dirname $(dirname ${SYS_PYTHON}))/lib/"python* -type f -name "${_PYTHON_SYSCONFIGDATA_NAME_USED}.py" -exec false {} +; then
-    echo ""
-    echo "WARNING: The Python interpreter at the following prefix:"
-    echo "         $(dirname $(dirname ${SYS_PYTHON}))"
-    echo "         .. is not able to handle sysconfigdata-based compilation for the host:"
-    echo "         ${_PYTHON_SYSCONFIGDATA_NAME_USED//_sysconfigdata_/}"
-    echo ""
-    echo "         We are not preventing things from continuing here, but *this* Python will not"
-    echo "         be able to compile software for this host, and, depending on whether it has"
-    echo "         been patched to ignore missing _PYTHON_SYSCONFIGDATA_NAME or not, may cause"
-    echo "         an exception."
-    echo ""
-    echo "         This can happen for one of three reasons:"
-    echo ""
-    echo "         1. It is out of date: Please run 'conda update python' in that environment"
-    echo ""
-    echo "         2. You are bootstrapping a sysconfigdata-based cross-capable Python and can ignore this"
-    echo "            (but please remember to copy the generated sysconfigdata back to the Python recipe's"
-    echo "             sysconfigdate folder and then rebuild it for all the systems you want to be able"
-    echo "             to use as a build machine for this host)."
-    echo ""
-    echo "         3. You are attempting your own bespoke cross-compilation host that is not supported. Have"
-    echo "            you provided your own value in the _PYTHON_SYSCONFIGDATA_NAME environment variable but"
-    echo "            misspelt it and/or failed to add the neccessary ${_PYTHON_SYSCONFIGDATA_NAME_USED}.py"
-    echo "            file to the Python interpreter's standard library?"
-    echo ""
-  fi
-fi
-
 _tc_activation \
   activate host x86_64-conda_cos6-linux-gnu x86_64-conda_cos6-linux-gnu- \
-  cc cpp gcc gcc-ar gcc-nm gcc-ranlib \
-  "CPPFLAGS,${CPPFLAGS:--DNDEBUG -O3}" \
-  "CFLAGS,${CFLAGS:-${CFLAGS_USED}}" \
-  "LDFLAGS,${LDFLAGS:-${LDFLAGS_USED}}" \
-  "DEBUG_CPPFLAGS,${CPPFLAGS:--D_DEBUG -Og}" \
-  "DEBUG_CFLAGS,${DEBUG_CFLAGS:-${DEBUG_CFLAGS_USED}}" \
-  "_PYTHON_SYSCONFIGDATA_NAME,${_PYTHON_SYSCONFIGDATA_NAME_USED}"
+  c++ g++ \
+  "CXXFLAGS,${CXXFLAGS:-${CXXFLAGS_USED}}" \
 
 if [ $? -ne 0 ]; then
   echo "ERROR: $(_get_sourced_filename) failed, see above for details"

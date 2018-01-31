@@ -84,13 +84,13 @@ function _tc_activation() {
 # When people are using conda-build, assume that adding rpath during build, and pointing at
 #    the host env's includes and libs is helpful default behavior
 if [ "${CONDA_BUILD}" = "1" ]; then
-  CFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe -I${PREFIX}/include"
-  DEBUG_CFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -pipe -I${PREFIX}/include"
-  LDFLAGS_USED="-Wl,-O3 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,-rpath,${PREFIX}/lib -L${PREFIX}/lib"
+  FFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe -I${PREFIX}/include"
+  FCFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe -I${PREFIX}/include"
+  FORTRANFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe -I${PREFIX}/include"
 else
-  CFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe"
-  DEBUG_CFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -pipe"
-  LDFLAGS_USED="-Wl,-O3 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now"
+  FFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe"
+  FCFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe"
+  FORTRANFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe"
 fi
 
 if [ -f /tmp/old-env-$$.txt ]; then
@@ -99,14 +99,17 @@ fi
 env > /tmp/old-env-$$.txt
 
 _tc_activation \
-  deactivate host x86_64-conda_cos6-linux-gnu x86_64-conda_cos6-linux-gnu- \
-  cc cpp gcc gcc-ar gcc-nm gcc-ranlib \
-  "CPPFLAGS,${CPPFLAGS:--DNDEBUG -O3}" \
-  "CFLAGS,${CFLAGS:-${CFLAGS_USED}}" \
-  "LDFLAGS,${LDFLAGS:-${LDFLAGS_USED}}" \
-  "DEBUG_CPPFLAGS,${CPPFLAGS:--D_DEBUG -Og}" \
-  "DEBUG_CFLAGS,${DEBUG_CFLAGS:-${DEBUG_CFLAGS_USED}}" \
-  "_PYTHON_SYSCONFIGDATA_NAME,${_PYTHON_SYSCONFIGDATA_NAME_USED}"
+  activate host x86_64-conda_cos6-linux-gnu x86_64-conda_cos6-linux-gnu- \
+  gfortran f95 \
+  "FFLAGS,${FFLAGS:-${FFLAGS_USED}}" \
+  "FCFLAGS,${FFLAGS:-${FCFLAGS_USED}}" \
+  "FORTRANFLAGS,${FORTRANFLAGS:-${FORTRANFLAGS_USED}}" \
+
+# extra ones - have a dependency on the previous ones, so done after.
+_tc_activation \
+  activate host x86_64-conda_cos6-linux-gnu x86_64-conda_cos6-linux-gnu- \
+  "FC,${FC:-${GFORTRAN}}" \
+  "F77,${F77:-${GFORTRAN}}"
 
 if [ $? -ne 0 ]; then
   echo "ERROR: $(_get_sourced_filename) failed, see above for details"

@@ -84,9 +84,11 @@ function _tc_activation() {
 # When people are using conda-build, assume that adding rpath during build, and pointing at
 #    the host env's includes and libs is helpful default behavior
 if [ "${CONDA_BUILD}" = "1" ]; then
-  FFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe -I${PREFIX}/include"
+  CFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe -I${PREFIX}/include"
+  LDFLAGS_USED="-Wl,-O3 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,-rpath,${PREFIX}/lib -L${PREFIX}/lib"
 else
-  FFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe"
+  CFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe"
+  LDFLAGS_USED="-Wl,-O3 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now"
 fi
 
 if [ -f /tmp/old-env-$$.txt ]; then
@@ -95,18 +97,12 @@ fi
 env > /tmp/old-env-$$.txt
 
 _tc_activation \
-  activate host x86_64-conda_cos6-linux-gnu x86_64-conda_cos6-linux-gnu- \
-  gfortran f95 \
-  "FFLAGS,${FFLAGS:-${FFLAGS_USED}}" \
-  "FORTRANFLAGS,${FORTRANFLAGS:-${FFLAGS_USED}}" \
-  "DEBUG_FFLAGS,${FFLAGS:-${FFLAGS_USED} -ftree-vectorize -fPIC -fno-plt -Og -g -Wall -Wextra -fcheck=all -fbacktrace -fimplicit-none -fvar-tracking-assignments -pipe}" \
-  "DEBUG_FORTRANFLAGS,${FORTRANFLAGS:-${FFLAGS_USED} -ftree-vectorize -fPIC -fno-plt -Og -g -Wall -Wextra -fcheck=all -fbacktrace -fimplicit-none -fvar-tracking-assignments -pipe}" \
-
-# extra ones - have a dependency on the previous ones, so done after.
-_tc_activation \
-  activate host x86_64-conda_cos6-linux-gnu x86_64-conda_cos6-linux-gnu- \
-  "FC,${FC:-${GFORTRAN}}" \
-  "F77,${F77:-${GFORTRAN}}"
+  deactivate host x86_64-conda_cos6-linux-gnu x86_64-conda_cos6-linux-gnu- \
+  cc cpp gcc gcc-ar gcc-nm gcc-ranlib \
+  "CPPFLAGS,${CPPFLAGS:--DNDEBUG -O3}" \
+  "CFLAGS,${CFLAGS:-${CFLAGS_USED}}" \
+  "LDFLAGS,${LDFLAGS:-${LDFLAGS_USED}}" \
+  "_PYTHON_SYSCONFIGDATA_NAME,${_PYTHON_SYSCONFIGDATA_NAME_USED}"
 
 if [ $? -ne 0 ]; then
   echo "ERROR: $(_get_sourced_filename) failed, see above for details"

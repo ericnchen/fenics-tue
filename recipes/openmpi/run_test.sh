@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-source "${RECIPE_DIR}/fix-environment.sh"
-
 cd examples
 
 make hello_c ring_c mpi

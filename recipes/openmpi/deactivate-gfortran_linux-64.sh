@@ -85,8 +85,12 @@ function _tc_activation() {
 #    the host env's includes and libs is helpful default behavior
 if [ "${CONDA_BUILD}" = "1" ]; then
   FFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe -I${PREFIX}/include"
+  FCFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe -I${PREFIX}/include"
+  FORTRANFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe -I${PREFIX}/include"
 else
   FFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe"
+  FCFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe"
+  FORTRANFLAGS_USED="-ftree-vectorize -fPIC -fno-plt -O3 -pipe"
 fi
 
 if [ -f /tmp/old-env-$$.txt ]; then
@@ -98,9 +102,8 @@ _tc_activation \
   deactivate host x86_64-conda_cos6-linux-gnu x86_64-conda_cos6-linux-gnu- \
   gfortran f95 \
   "FFLAGS,${FFLAGS:-${FFLAGS_USED}}" \
-  "FORTRANFLAGS,${FORTRANFLAGS:-${FFLAGS_USED}}" \
-  "DEBUG_FFLAGS,${FFLAGS:-${FFLAGS_USED} -ftree-vectorize -fPIC -fno-plt -Og -g -Wall -Wextra -fcheck=all -fbacktrace -fimplicit-none -fvar-tracking-assignments -pipe}" \
-  "DEBUG_FORTRANFLAGS,${FORTRANFLAGS:-${FFLAGS_USED} -ftree-vectorize -fPIC -fno-plt -Og -g -Wall -Wextra -fcheck=all -fbacktrace -fimplicit-none -fvar-tracking-assignments -pipe}" \
+  "FCFLAGS,${FFLAGS:-${FCFLAGS_USED}}" \
+  "FORTRANFLAGS,${FORTRANFLAGS:-${FORTRANFLAGS_USED}}" \
 
 # extra ones - have a dependency on the previous ones, so done after.
 _tc_activation \

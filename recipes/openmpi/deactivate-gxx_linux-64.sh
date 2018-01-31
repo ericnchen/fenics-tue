@@ -85,10 +85,8 @@ function _tc_activation() {
 #    the host env's includes and libs is helpful default behavior
 if [ "${CONDA_BUILD}" = "1" ]; then
   CXXFLAGS_USED="-fvisibility-inlines-hidden -std=c++11 -fmessage-length=0 -ftree-vectorize -fPIC -fno-plt -O3 -pipe -I${PREFIX}/include"
-  DEBUG_CXXFLAGS_USED="-fvisibility-inlines-hidden -std=c++11 -fmessage-length=0 -ftree-vectorize -fPIC -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -pipe -I${PREFIX}/include"
 else
   CXXFLAGS_USED="-fvisibility-inlines-hidden -std=c++11 -fmessage-length=0 -ftree-vectorize -fPIC -fno-plt -O3 -pipe"
-  DEBUG_CXXFLAGS_USED="-fvisibility-inlines-hidden -std=c++11 -fmessage-length=0 -ftree-vectorize -fPIC -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -pipe"
 fi
 
 if [ -f /tmp/old-env-$$.txt ]; then
@@ -97,10 +95,9 @@ fi
 env > /tmp/old-env-$$.txt
 
 _tc_activation \
-  activate host x86_64-conda_cos6-linux-gnu x86_64-conda_cos6-linux-gnu- \
+  deactivate host x86_64-conda_cos6-linux-gnu x86_64-conda_cos6-linux-gnu- \
   c++ g++ \
   "CXXFLAGS,${CXXFLAGS:-${CXXFLAGS_USED}}" \
-  "DEBUG_CXXFLAGS,${DEBUG_CXXFLAGS:-${DEBUG_CXXFLAGS_USED}}"
 
 if [ $? -ne 0 ]; then
   echo "ERROR: $(_get_sourced_filename) failed, see above for details"

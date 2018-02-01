@@ -7,7 +7,7 @@ source:
   sha256: 2073c4d8f998798a3b0a8a371e74d9848f0e52933cf5f35cee21e82ab3fe87b3
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -18,7 +18,6 @@ requirements:
     - fenics-ufl 2017.1.0
     - fenics-fiat 2017.1.0
     - numpy
-    - nomkl
 
 test:
   imports:

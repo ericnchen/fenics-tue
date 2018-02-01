@@ -7,7 +7,7 @@ source:
   sha256: ba793a2d41995d65ce4ee9e955e06342a6357174420b727cfde9fc6c70590e92
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -25,7 +25,6 @@ requirements:
     - boost
     - cmake
     - eigen
-    - nomkl
     - ply
     - swig
     - pthread-stubs
@@ -40,7 +39,6 @@ requirements:
     - petsc 3.8.1
     - openblas
     - boost
-    - nomkl
     - numpy
     - ply
     - swig

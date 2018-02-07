@@ -1,0 +1,27 @@
+package:
+  name: mpich
+  version: 3.2.1
+
+source:
+  url: http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1.tar.gz
+  md5: e175452f4d61646a52c73031683fc375
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+    - libgcc-ng
+
+  run:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+    - libgcc-ng
+
+test:
+  commands:
+    - conda inspect linkages mpich

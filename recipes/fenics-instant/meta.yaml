@@ -1,13 +1,13 @@
 package:
   name: fenics-instant
-  version: 2017.1.0
+  version: 2017.2.0
 
 source:
-  url: https://bitbucket.org/fenics-project/instant/downloads/instant-2017.1.0.tar.gz
-  sha256: 38f56bd9a583518fb023a90be6d09a114d74a36cacb91cbf50167002ac815ee7
+  url: https://bitbucket.org/fenics-project/instant/downloads/instant-2017.2.0.tar.gz
+  sha256: be24f162fd1a89b82fae002db8df0b4f111fd50db83d78c0c121015c02e45b7b
 
 build:
-  number: 3
+  number: 0
 
 requirements:
   build:

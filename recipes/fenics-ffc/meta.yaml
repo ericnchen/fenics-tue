@@ -1,13 +1,13 @@
 package:
   name: fenics-ffc
-  version: 2017.1.0
+  version: 2017.2.0
 
 source:
-  url: https://bitbucket.org/fenics-project/ffc/downloads/ffc-2017.1.0.tar.gz
-  sha256: 2073c4d8f998798a3b0a8a371e74d9848f0e52933cf5f35cee21e82ab3fe87b3
+  url: https://bitbucket.org/fenics-project/ffc/downloads/ffc-2017.2.0.tar.gz
+  sha256: c7e52c552bb6bf4748ba27d63725eb79ffba7260a6052a6e5f3c3e0e6b0a7279
 
 build:
-  number: 3
+  number: 0
 
 requirements:
   build:
@@ -15,8 +15,8 @@ requirements:
 
   run:
     - python {{ python }}
-    - fenics-ufl 2017.1.0
-    - fenics-fiat 2017.1.0
+    - fenics-ufl 2017.2.0
+    - fenics-fiat 2017.2.0
     - numpy
 
 test:

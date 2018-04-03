@@ -1,26 +1,26 @@
 package:
   name: fenics-mshr
-  version: 2017.1.0
+  version: 2017.2.0
 
 source:
-  url: https://bitbucket.org/fenics-project/mshr/downloads/mshr-2017.1.0.tar.gz
-  sha256: ec132dbc4c5469d8f828fc5c576c39c3d45cb231bd0b552585f9378c295ee689
+  url: https://bitbucket.org/fenics-project/mshr/downloads/mshr-2017.2.0.tar.gz
+  sha256: 61b519f84148e789e413fc6b9acaaea4fafb511fcd23260cff6ee7d8555c6a9d
 
 build:
-  number: 3
+  number: 0
 
 requirements:
   build:
     - python {{ python }}
     - openmpi 2.1.2
-    - fenics-dolfin 2017.1.0
+    - fenics-dolfin 2017.2.0
     - cmake
     - eigen
     - subprocess32  # [py2k]
 
   run:
     - python {{ python }}
-    - fenics-dolfin 2017.1.0
+    - fenics-dolfin 2017.2.0
 
 test:
   source_files:

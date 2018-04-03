@@ -1,13 +1,13 @@
 package:
   name: fenics-dolfin
-  version: 2017.1.0
+  version: 2017.2.0
 
 source:
-  url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-2017.1.0.tar.gz
-  sha256: ba793a2d41995d65ce4ee9e955e06342a6357174420b727cfde9fc6c70590e92
+  url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-2017.2.0.tar.gz
+  sha256: da548ed983c84201be494daa6fe12cd028936dfbaef181a8bced239f5d68e8bc
 
 build:
-  number: 3
+  number: 0
 
 requirements:
   build:
@@ -19,7 +19,7 @@ requirements:
     - scalapack 2.0.2
     - blacs 1.1
     - hdf5 1.8.20
-    - fenics-ffc 2017.1.0
+    - fenics-ffc 2017.2.0
     - petsc 3.8.1
     - openblas
     - boost
@@ -33,9 +33,9 @@ requirements:
     - python {{ python }}
     - openmpi 2.1.2
     - hdf5 1.8.20
-    - fenics-ffc 2017.1.0
-    - fenics-ufl 2017.1.0
-    - fenics-instant 2017.1.0
+    - fenics-ffc 2017.2.0
+    - fenics-ufl 2017.2.0
+    - fenics-instant 2017.2.0
     - petsc 3.8.1
     - openblas
     - boost

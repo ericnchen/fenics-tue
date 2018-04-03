@@ -1,13 +1,13 @@
 package:
   name: fenics-fiat
-  version: 2017.1.0
+  version: 2017.2.0
 
 source:
-  url: https://bitbucket.org/fenics-project/fiat/downloads/fiat-2017.1.0.tar.gz
-  sha256: d4288401ad16c4598720f9db0810a522f7f0eadad35d8211bac7120bce5fde94
+  url: https://bitbucket.org/fenics-project/fiat/downloads/fiat-2017.2.0.tar.gz
+  sha256: abf4bfae6ab67601ab49e6df1ee3664c19c36f18467720706ec9e62d4c75837c
 
 build:
-  number: 3
+  number: 0
 
 requirements:
   build:

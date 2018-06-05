@@ -14,8 +14,8 @@ instant:   fenics-instant 2017.2.0
 mshr:      fenics-mshr    2017.2.0
 ufl:       fenics-ufl     2017.2.0
 python:
-  - 2.7
   - 3.5
+  - 3.6
 march:
   - march_none
   - march_haswell

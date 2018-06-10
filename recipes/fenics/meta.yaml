@@ -3,7 +3,7 @@ package:
   version: 2017.2.0
 
 build:
-  number: 0
+  number: 2
 
 requirements:
   build:
@@ -17,6 +17,7 @@ requirements:
     - matplotlib
     - pandas
     - scipy
+    - eigen
 
 test:
   imports:

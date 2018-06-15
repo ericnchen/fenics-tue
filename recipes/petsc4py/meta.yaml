@@ -1,0 +1,28 @@
+package:
+  name: petsc4py
+  version: 3.8.1
+
+source:
+  url: https://bitbucket.org/petsc/petsc4py/get/3.8.1.tar.bz2
+  sha256: d0904b020d06eb7f64fd5a62da8e62b9b8e8be818c3e511851159aaf0aae0b7c
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python {{ python }}
+    - petsc 3.8.1
+    - numpy
+    - cython
+
+  run:
+    - python {{ python }}
+    - petsc 3.8.1
+
+test:
+  imports:
+    - petsc4py
+
+  commands:
+    - conda inspect linkages petsc4py

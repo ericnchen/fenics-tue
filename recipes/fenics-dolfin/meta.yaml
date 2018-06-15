@@ -7,7 +7,7 @@ source:
   sha256: da548ed983c84201be494daa6fe12cd028936dfbaef181a8bced239f5d68e8bc
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -28,6 +28,7 @@ requirements:
     - ply
     - swig
     - pthread-stubs
+    - petsc4py 3.8.1
 
   run:
     - python {{ python }}
@@ -42,6 +43,7 @@ requirements:
     - numpy
     - ply
     - swig
+    - petsc4py 3.8.1
 
 test:
   imports:

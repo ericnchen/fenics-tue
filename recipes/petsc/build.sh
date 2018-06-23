@@ -74,3 +74,8 @@ rm -f "${PREFIX}/lib/petsc/conf/mpitest.c"
 rm -f "${PREFIX}/lib/petsc/conf/uninstall.py"
 rm -f "${PREFIX}/lib/petsc/conf/test"
 rm -f "${PREFIX}/lib/petsc/conf/.DIR"
+
+
+mkdir -p "${PREFIX}/etc/conda/activate.d" "${PREFIX}/etc/conda/deactivate.d"
+cp "${RECIPE_DIR}/activate-petsc-export-petsc-dir.sh" "${PREFIX}/etc/conda/activate.d/activate-petsc-export-petsc-dir.sh"
+cp "${RECIPE_DIR}/deactivate-petsc-export-petsc-dir.sh" "${PREFIX}/etc/conda/deactivate.d/deactivate-petsc-export-petsc-dir.sh"

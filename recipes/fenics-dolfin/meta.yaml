@@ -7,20 +7,20 @@ source:
   sha256: da548ed983c84201be494daa6fe12cd028936dfbaef181a8bced239f5d68e8bc
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
     - python {{ python }}
     - openmpi 2.1.2
     - hypre 2.11.2
-    - mumps 5.1.2
-    - scotch 6.0.4
+    - mumps 5.1.2 6
+    - scotch 6.0.4 7
     - scalapack 2.0.2
     - blacs 1.1
     - hdf5 1.8.20
     - fenics-ffc 2017.2.0
-    - petsc 3.8.1
+    - petsc 3.8.1 5
     - openblas
     - boost
     - cmake

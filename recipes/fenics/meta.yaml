@@ -3,7 +3,7 @@ package:
   version: 2017.2.0
 
 build:
-  number: 4
+  number: 6
 
 requirements:
   build:
@@ -11,13 +11,14 @@ requirements:
 
   run:
     - python {{ python }}
-    - fenics-dolfin 2017.2.0 py*_1
+    - fenics-dolfin 2017.2.0 py*_2
     - fenics-mshr 2017.2.0
     - fenics-dijitso 2017.2.0
     - matplotlib
     - pandas
     - scipy
     - eigen
+    - cmake
 
 test:
   imports:

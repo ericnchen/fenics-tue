@@ -9,7 +9,7 @@ CAT        = cat
 CCS       := $(GCC)
 CCP        = mpicc
 CCD        = mpicc
-CFLAGS    := $(CFLAGS) -DCOMMON_FILE_COMPRESS_GZ -DCOMMON_PTHREAD -DCOMMON_RANDOM_FIXED_SEED -DSCOTCH_RENAME -DSCOTCH_PTHREAD -Drestrict=__restrict -DIDXSIZE64 -DSCOTCH_PTHREAD_NUMBER=2
+CFLAGS    := $(CFLAGS) -DCOMMON_FILE_COMPRESS_GZ -DCOMMON_PTHREAD -DCOMMON_RANDOM_FIXED_SEED -DSCOTCH_RENAME -Drestrict=__restrict -DIDXSIZE64
 CLIBFLAGS  =
 LDFLAGS   := $(LDFLAGS) -lz -lm -lrt -pthread
 CP         = cp
@@ -20,8 +20,7 @@ MV         = mv
 RANLIB    := $(RANLIB)
 YACC       = bison -pscotchyy -y -b y
 
-# TODO
-# Try these options in the future to build a shared library.
+# TODO: Try these options in the future to build a shared library.
 # LIB		= .so
 # AR		= gcc
 # ARFLAGS		= -shared -o

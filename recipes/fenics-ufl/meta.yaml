@@ -1,10 +1,10 @@
 package:
   name: fenics-ufl
-  version: 2017.2.0
+  version: 2018.1.0
 
 source:
-  url: https://bitbucket.org/fenics-project/ufl/downloads/ufl-2017.2.0.tar.gz
-  sha256: 45562fcd29ceb2f2e37c44bc2552b8e6c5d76409f73526096d2bcdb7078cf99c
+  url: https://bitbucket.org/fenics-project/ufl/downloads/ufl-2018.1.0.tar.gz
+  sha256: ed191f5e0abfeb9922a68a6802f819e9cc6c50749472c01365319f66a5cfcbea
 
 build:
   number: 0

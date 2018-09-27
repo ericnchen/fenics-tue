@@ -20,3 +20,6 @@ cmake .. \
 make VERBOSE=1 -j "${CPU_COUNT}"
 
 make install
+
+cd ../python
+$PYTHON -m pip install -v --no-deps --ignore-installed --no-binary :all: .

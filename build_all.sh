@@ -17,7 +17,6 @@ build recipes/mumps
 build recipes/petsc
 build recipes/fenics-dijitso
 build recipes/fenics-ufl
-build recipes/fenics-instant
 build recipes/fenics-fiat
 build recipes/fenics-ffc
 build recipes/fenics-dolfin

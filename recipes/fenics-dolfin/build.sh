@@ -4,10 +4,8 @@ set -e
 export PETSC_DIR="${PREFIX}"
 export PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig"
 export LD_LIBRARY_PATH="${PREFIX}/lib"
-
-# Tarball includes cached swig output built with Python 3.
-# Re-generate it with correct Python.
-python cmake/scripts/generate-swig-interface.py
+export LIBRARY_PATH=$PREFIX/lib
+export INCLUDE_PATH=$PREFIX/include
 
 rm -rf build && mkdir build
 
@@ -28,6 +26,9 @@ cmake .. \
   -DCMAKE_C_FLAGS_RELEASE="${CFLAGS}" \
   -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
   -DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS}" \
+  -DCMAKE_INSTALL_LIBDIR=$PREFIX/lib \
+  -DCMAKE_INCLUDE_PATH=$INCLUDE_PATH \
+  -DCMAKE_LIBRARY_PATH=$LIBRARY_PATH \
   -DCMAKE_BUILD_TYPE="release"
 
 make VERBOSE=1 -j "${CPU_COUNT}"
@@ -46,3 +47,9 @@ if [[ "$(uname)" == "Darwin" ]]; then
 else
     find $PREFIX/share/dolfin -name '*.cmake' -print -exec sh -c "sed -E -i''  's@/usr/lib(64)?/[^;]*(.so|.a);@@g' {}" \;
 fi
+
+# install Python bindings
+cd ../python
+$PYTHON -m pip install -v --no-deps .
+cd test
+$PYTHON -c 'from dolfin import *; info(parameters["form_compiler"], True)'

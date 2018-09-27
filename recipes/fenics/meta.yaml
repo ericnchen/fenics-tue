@@ -1,9 +1,9 @@
 package:
   name: fenics
-  version: 2017.2.0
+  version: 2018.1.0
 
 build:
-  number: 6
+  number: 0
 
 requirements:
   build:
@@ -11,9 +11,9 @@ requirements:
 
   run:
     - python {{ python }}
-    - fenics-dolfin 2017.2.0 py*_2
-    - fenics-mshr 2017.2.0
-    - fenics-dijitso 2017.2.0
+    - fenics-dolfin 2018.1.0
+    - fenics-mshr 2018.1.0
+    - fenics-dijitso 2018.1.0
     - matplotlib
     - pandas
     - scipy
@@ -23,7 +23,6 @@ requirements:
 test:
   imports:
     - dolfin
-    - fenics
     - mshr
 
   commands:
